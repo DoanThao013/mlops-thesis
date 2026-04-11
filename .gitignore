@@ -1,0 +1,5 @@
+uc1_mnist/data/
+__pycache__/
+*.pyc
+mlruns/
+*.db

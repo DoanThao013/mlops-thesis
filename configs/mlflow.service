@@ -1,0 +1,15 @@
+[Unit]
+Description=MLflow Tracking Server
+After=network.target
+
+[Service]
+User=doanthao0103
+WorkingDirectory=/home/doanthao0103
+ExecStart=/home/doanthao0103/.local/bin/mlflow server   --backend-store-uri sqlite:////home/doanthao0103/mlflow-data/mlflow.db   --default-artifact-root /home/doanthao0103/mlflow-data/artifacts   --host 0.0.0.0   --port 5000
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/doanthao0103/mlflow-data/mlflow.log
+StandardError=append:/home/doanthao0103/mlflow-data/mlflow.log
+
+[Install]
+WantedBy=multi-user.target
