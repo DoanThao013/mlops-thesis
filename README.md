@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MLOps Thesis — Đánh giá thực nghiệm các nền tảng MLOps
 
 ## Thông tin nhóm
@@ -23,3 +24,6 @@ mlops-project/ ├── uc1_mnist/ │ ├── train_mnist.py # SimpleNN │ 
 
 ## Cách tái tạo môi trường
 Xem file configs/setup_mlflow_gcp.md
+=======
+# mlops-thesis
+>>>>>>> d4c930835ed49c0e28568d976dfb61c76f639acd
