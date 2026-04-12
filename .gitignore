@@ -1,4 +1,6 @@
-uc1_mnist/data/
+uc1_mnist/data/MNIST/
+!uc1_mnist/data/MNIST.dvc
+!uc1_mnist/data/.gitignore
 __pycache__/
 *.pyc
 mlruns/
