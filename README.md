@@ -17,34 +17,45 @@
 
 ---
 
+##  Teck Stack & Tool
+- **DVC (Data Version Control)**: Manages data versioning and prevents large datasets from being pushed to GitHub.
+- **MLflow**: Tracks hyperparameters, metrics, and manages model artifacts/registry.
+- **GCP (Google Cloud Platform)**: Remote environment for hosting the MLflow tracking server.
+---
+
 ##  Project Structure
 
 ```text
 mlops-project/
-├── configs/
-│   ├── mlflow.service
-│   └── setup_mlflow_gcp.md
-├── results/
-│   └── mlflow_uc1_results.csv
-├── saved_models/
-│   └── uc1_mnist/
-│       ├── cnn_architecture.pth
-│       └── simplenn_architecture.pth
-└── uc1_mnist/
-    ├── train_mnist.py
-    └── train_mnist_cnn.py
+├── configs/                # System configurations and setup guides
+│   ├── mlflow.service      # MLflow Server systemd service configuration
+│   └── setup_mlflow_gcp.md # Documentation for GCP environment setup
+├── results/                # Experimental artifacts and logs
+│   ├── uc1_mlflow_run_log.txt      # Detailed pipeline execution logs
+│   └── mlflow_final_backup.db.gz   # Compressed backup of MLflow SQLite database
+├── saved_models/           # Local storage for trained model weights (.pth)
+│   └── uc1_mnist/          # Use Case 1 (MNIST) model artifacts
+├── uc1_mnist/              # Source code for Use Case 1
+│   ├── data/               # Data directory (Managed by DVC)
+│   │   └── MNIST.dvc       # DVC data pointer file
+│   └── train_uc1.py        # Centralized training pipeline script
+└── requirements.txt        # Project dependencies
 ```
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/9912c4f6-1af1-47ce-842c-e5b6e6175b53" width="80%" alt="MLops Project Structure Tree" />
+  <img src="https://github.com/user-attachments/assets/fd8484cf-9a94-45da-b70b-37149b5fe370" width="80%" alt="MLops Project Structure Tree" />
   <br>
   <em> mlops-project Stucture (Use Case 1)</em>
 </div>
 
 ## UC1 MNIST Results — MLflow tracking
-| Model / Scenario | Accuracy | Avg. Time (s) | Learning Rate | Batch Size |
+The results below were extracted from 9 automated runs (including hyperparameter sweeps and average time measurement) using train_uc1.py on GCP CPU:
+
+| Model / Scenario | Accuracy | TC7 (Avg. Time) | Learning Rate | Batch Size |
 | :--- | :---: | :---: | :---: | :---: |
-|  **SimpleNN** | 0.9364 | 57.4 | 0.01 | 64 |
-|  **CNN** (Best) | **0.9737** | 267.9 | 0.01 | 64 |
+| **SimpleNN** | 0.9348 | 93.0s | 0.01 | 64 |
+| **CNN (Best)** | **0.9770** | 452.4s | 0.01 | 64 |
+
+> **Analysis:** The CNN model achieved superior accuracy (97.70%). However, due to its architectural complexity and the lack of GPU acceleration on the GCP instance, its training time was approximately 4.8x longer than the SimpleNN model, highlighting a significant accuracy-performance trade-off.
 
 ## Reproduction Guide
 
