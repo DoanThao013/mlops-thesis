@@ -1,7 +1,13 @@
 uc1_mnist/data/MNIST/
 !uc1_mnist/data/MNIST.dvc
 !uc1_mnist/data/.gitignore
+uc2_phobert/data/*
+!uc2_phobert/data/.gitignore
+uc2_phobert/results_uc2/
 __pycache__/
 *.pyc
 mlruns/
 *.db
+.cache/
+.DS_Store
+.DS_Store
