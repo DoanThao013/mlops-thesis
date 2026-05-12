@@ -5,9 +5,10 @@ Chạy trên Google Colab (cần GPU T4):
   python3 train_uc2_metaflow.py run
   python3 train_uc2_metaflow.py run --lr 1e-5
   python3 train_uc2_metaflow.py run --lr 3e-5 --batch_size 32
-  python3 train_uc2_metaflow.py run --lr 1e-4 --batch_size 32
 """
+import sys
 import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 os.environ["METAFLOW_DEFAULT_DATASTORE"] = "local"
 os.environ["METAFLOW_DEFAULT_METADATA"] = "local"
 
@@ -33,6 +34,7 @@ class PhoBERTSentimentFlow(FlowSpec):
         print(f"\n{'='*50}")
         print(f"  UC2 PhoBERT Sentiment — Metaflow (Colab GPU)")
         print(f"  Config: lr={self.lr}, batch={self.batch_size}, epochs={self.epochs}")
+        print(f"  Optimizer: AdamW")
         print(f"{'='*50}")
         self.next(self.load_and_train)
 
@@ -43,7 +45,6 @@ class PhoBERTSentimentFlow(FlowSpec):
 
         LÝ DO GỘP: PyTorch models, DataLoaders, và HuggingFace Datasets
         KHÔNG thể pickle giữa các @step trong Metaflow.
-        Đây là hạn chế của Metaflow với deep learning workloads.
         """
         import numpy as np
         import torch
@@ -56,9 +57,12 @@ class PhoBERTSentimentFlow(FlowSpec):
             Trainer,
         )
         from sklearn.metrics import accuracy_score, f1_score
+        from shared.config_phobert import (
+            PHOBERT_MODEL_NAME, NUM_LABELS, DATASET_NAME, TEXT_COL, LABEL_COL,
+        )
 
         # ========== LOAD DATASET ==========
-        print("  📦 Loading UIT-VSFC dataset...")
+        print("  Loading UIT-VSFC dataset...")
         urls = {
             "train": "https://huggingface.co/datasets/uitnlp/vietnamese_students_feedback/resolve/refs%2Fconvert%2Fparquet/default/train/0000.parquet",
             "validation": "https://huggingface.co/datasets/uitnlp/vietnamese_students_feedback/resolve/refs%2Fconvert%2Fparquet/default/validation/0000.parquet",
@@ -77,34 +81,34 @@ class PhoBERTSentimentFlow(FlowSpec):
         print(f"  Data: {len(dataset['train'])} train, {len(dataset['validation'])} val, {len(dataset['test'])} test")
 
         # ========== TOKENIZE ==========
-        print("  🔤 Tokenizing with PhoBERT...")
-        tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base")
+        print("  Tokenizing with PhoBERT...")
+        tokenizer = AutoTokenizer.from_pretrained(PHOBERT_MODEL_NAME)
 
         def tokenize_fn(examples):
             return tokenizer(
-                examples["sentence"],
+                examples[TEXT_COL],
                 padding="max_length",
                 truncation=True,
                 max_length=self.max_length,
             )
 
         tokenized = dataset.map(tokenize_fn, batched=True)
-        tokenized = tokenized.rename_column("sentiment", "labels")
+        tokenized = tokenized.rename_column(LABEL_COL, "labels")
         tokenized.set_format("torch", columns=["input_ids", "attention_mask", "labels"])
 
         # ========== TRAIN ==========
-        print("  🚀 Fine-tuning PhoBERT...")
+        print("  Fine-tuning PhoBERT...")
 
         def compute_metrics(eval_pred):
             logits, labels = eval_pred
             preds = np.argmax(logits, axis=-1)
             return {
                 "accuracy": accuracy_score(labels, preds),
-                "f1": f1_score(labels, preds, average="weighted"),
+                "f1_macro": f1_score(labels, preds, average="macro"),
             }
 
         model = AutoModelForSequenceClassification.from_pretrained(
-            "vinai/phobert-base", num_labels=3
+            PHOBERT_MODEL_NAME, num_labels=NUM_LABELS
         )
 
         training_args = TrainingArguments(
@@ -131,21 +135,27 @@ class PhoBERTSentimentFlow(FlowSpec):
             compute_metrics=compute_metrics,
         )
 
+        train_start = time.time()
         trainer.train()
+        self.train_time = time.time() - train_start
 
         # ========== EVALUATE ==========
-        print("  📊 Evaluating on test set...")
+        print("  Evaluating on test set...")
+        eval_start = time.time()
         test_results = trainer.evaluate(tokenized["test"])
+        self.eval_time = time.time() - eval_start
 
         self.accuracy = test_results["eval_accuracy"]
-        self.f1 = test_results["eval_f1"]
+        self.f1_macro = test_results["eval_f1_macro"]
         self.pipeline_time = time.time() - self.start_time
         self.gpu_name = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU"
 
-        print(f"\n  ✅ Accuracy: {self.accuracy:.4f}")
-        print(f"  ✅ F1: {self.f1:.4f}")
-        print(f"  ✅ TC7 (pipeline time): {self.pipeline_time:.1f}s")
-        print(f"  ✅ GPU: {self.gpu_name}")
+        print(f"\n  Accuracy: {self.accuracy:.4f}")
+        print(f"  F1-macro: {self.f1_macro:.4f}")
+        print(f"  Train time: {self.train_time:.1f}s")
+        print(f"  Eval time: {self.eval_time:.1f}s")
+        print(f"  Pipeline time: {self.pipeline_time:.1f}s")
+        print(f"  GPU: {self.gpu_name}")
         self.next(self.end)
 
     @step
@@ -155,9 +165,11 @@ class PhoBERTSentimentFlow(FlowSpec):
         print(f"  Model: vinai/phobert-base")
         print(f"  Dataset: UIT-VSFC")
         print(f"  Accuracy: {self.accuracy:.4f}")
-        print(f"  F1: {self.f1:.4f}")
-        print(f"  TC7: {self.pipeline_time:.1f}s")
-        print(f"  Config: lr={self.lr}, batch={self.batch_size}, epochs={self.epochs}")
+        print(f"  F1-macro: {self.f1_macro:.4f}")
+        print(f"  Train time: {self.train_time:.1f}s")
+        print(f"  Eval time: {self.eval_time:.1f}s")
+        print(f"  Pipeline time: {self.pipeline_time:.1f}s")
+        print(f"  Config: lr={self.lr}, batch={self.batch_size}, epochs={self.epochs}, optimizer=AdamW")
         print(f"  Platform: Metaflow Local Mode (Colab {self.gpu_name})")
         print(f"{'='*50}")
 

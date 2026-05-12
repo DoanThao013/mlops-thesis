@@ -29,6 +29,8 @@ def view_uc1():
                     "lr": run.data.lr,
                     "batch_size": run.data.batch_size,
                     "accuracy": round(run.data.accuracy, 4),
+                    "train_time_s": round(run.data.train_time, 1),
+                    "eval_time_s": round(run.data.eval_time, 1),
                     "pipeline_time_s": round(run.data.pipeline_time, 1),
                 })
             except:
@@ -38,9 +40,8 @@ def view_uc1():
             df = pd.DataFrame(results)
             print(df.to_string(index=False))
             df.to_csv("metaflow_uc1_results.csv", index=False)
-            print("\n✅ Saved: metaflow_uc1_results.csv")
+            print("\n Saved: metaflow_uc1_results.csv")
 
-            # Tính trung bình
             for model in df['model'].unique():
                 subset = df[df['model'] == model]
                 print(f"\n  {model} (n={len(subset)}): "
@@ -69,7 +70,9 @@ def view_uc2():
                     "lr": run.data.lr,
                     "batch_size": run.data.batch_size,
                     "accuracy": round(run.data.accuracy, 4),
-                    "f1": round(run.data.f1, 4),
+                    "f1_macro": round(run.data.f1_macro, 4),
+                    "train_time_s": round(run.data.train_time, 1),
+                    "eval_time_s": round(run.data.eval_time, 1),
                     "pipeline_time_s": round(run.data.pipeline_time, 1),
                 })
             except:
@@ -79,11 +82,11 @@ def view_uc2():
             df = pd.DataFrame(results)
             print(df.to_string(index=False))
             df.to_csv("metaflow_uc2_results.csv", index=False)
-            print("\n✅ Saved: metaflow_uc2_results.csv")
+            print("\n Saved: metaflow_uc2_results.csv")
 
             print(f"\n  TB (n={len(df)}): "
                   f"acc={df['accuracy'].mean():.4f}, "
-                  f"f1={df['f1'].mean():.4f}, "
+                  f"f1_macro={df['f1_macro'].mean():.4f}, "
                   f"TC7={df['pipeline_time_s'].mean():.1f}s")
         else:
             print("  Chưa có runs. Chạy train_uc2_metaflow.py trước.")
