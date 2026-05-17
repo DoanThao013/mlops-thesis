@@ -11,26 +11,31 @@ echo "=========================================="
 echo " UC1 MNIST — Metaflow (GCP VM)"
 echo "=========================================="
 
-# --- PHẦN 1: Repeat 3 lần SimpleNN (TC7) ---
+# --- PHAN 1: Repeat 3 lan moi model (TC7) ---
 echo ""
-echo ">>> SimpleNN × 3 runs (TC7)"
-python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.01 --batch_size 64
-python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.01 --batch_size 64
-python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.01 --batch_size 64
+echo ">>> SimpleNN x 3 runs (TC7)"
+python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.001 --batch_size 64
+python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.001 --batch_size 64
+python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.001 --batch_size 64
 
-# --- PHẦN 2: Repeat 3 lần CNN (TC7) ---
 echo ""
-echo ">>> CNN × 3 runs (TC7)"
-python3 -u train_uc1_metaflow.py run --model CNN --lr 0.01 --batch_size 64
-python3 -u train_uc1_metaflow.py run --model CNN --lr 0.01 --batch_size 64
-python3 -u train_uc1_metaflow.py run --model CNN --lr 0.01 --batch_size 64
+echo ">>> DeepNN x 3 runs (TC7)"
+python3 -u train_uc1_metaflow.py run --model DeepNN --lr 0.001 --batch_size 64
+python3 -u train_uc1_metaflow.py run --model DeepNN --lr 0.001 --batch_size 64
+python3 -u train_uc1_metaflow.py run --model DeepNN --lr 0.001 --batch_size 64
 
-# --- PHẦN 3: TC2 Config Sweep ---
+echo ""
+echo ">>> CNN x 3 runs (TC7)"
+python3 -u train_uc1_metaflow.py run --model CNN --lr 0.001 --batch_size 64
+python3 -u train_uc1_metaflow.py run --model CNN --lr 0.001 --batch_size 64
+python3 -u train_uc1_metaflow.py run --model CNN --lr 0.001 --batch_size 64
+
+# --- PHAN 2: TC2 Config Sweep ---
 echo ""
 echo ">>> TC2 Config Sweep (3 configs)"
-python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.001 --batch_size 32
-python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.01 --batch_size 64
-python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.05 --batch_size 128
+python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.001 --batch_size 32 --epochs 10
+python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.01 --batch_size 64 --epochs 10
+python3 -u train_uc1_metaflow.py run --model SimpleNN --lr 0.05 --batch_size 128 --epochs 10
 
 # --- Xem kết quả ---
 echo ""

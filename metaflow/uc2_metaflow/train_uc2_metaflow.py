@@ -1,10 +1,10 @@
 """
 UC2 PhoBERT Vietnamese Sentiment — Metaflow Pipeline (Local Mode)
 
-Chạy trên Google Colab (cần GPU T4):
+Chay tren GCP VM e2-medium:
   python3 train_uc2_metaflow.py run
   python3 train_uc2_metaflow.py run --lr 1e-5
-  python3 train_uc2_metaflow.py run --lr 3e-5 --batch_size 32
+  python3 train_uc2_metaflow.py run --lr 3e-5 --batch_size 4
 """
 import sys
 import os
@@ -21,19 +21,23 @@ class PhoBERTSentimentFlow(FlowSpec):
 
     lr = Parameter('lr', default=2e-5, type=float,
                    help='Learning rate')
-    batch_size = Parameter('batch_size', default=16, type=int,
-                           help='Batch size')
+    batch_size = Parameter('batch_size', default=2, type=int,
+                           help='Batch size (effective = batch_size x grad_accum)')
     epochs = Parameter('epochs', default=3, type=int,
                        help='Number of epochs')
-    max_length = Parameter('max_length', default=256, type=int,
+    max_length = Parameter('max_length', default=128, type=int,
                            help='Max token length for PhoBERT')
+    grad_accum = Parameter('grad_accum', default=8, type=int,
+                           help='Gradient accumulation steps')
 
     @step
     def start(self):
         self.start_time = time.time()
         print(f"\n{'='*50}")
-        print(f"  UC2 PhoBERT Sentiment — Metaflow (Colab GPU)")
-        print(f"  Config: lr={self.lr}, batch={self.batch_size}, epochs={self.epochs}")
+        print(f"  UC2 PhoBERT Sentiment — Metaflow (GCP VM)")
+        print(f"  Config: lr={self.lr}, batch={self.batch_size}, "
+              f"grad_accum={self.grad_accum}, epochs={self.epochs}")
+        print(f"  Effective batch size: {self.batch_size * self.grad_accum}")
         print(f"  Optimizer: AdamW")
         print(f"{'='*50}")
         self.next(self.load_and_train)
@@ -41,10 +45,10 @@ class PhoBERTSentimentFlow(FlowSpec):
     @step
     def load_and_train(self):
         """
-        Load data + Tokenize + Train + Evaluate (gộp 1 step)
+        Load data + Tokenize + Train + Evaluate (gop 1 step)
 
-        LÝ DO GỘP: PyTorch models, DataLoaders, và HuggingFace Datasets
-        KHÔNG thể pickle giữa các @step trong Metaflow.
+        LY DO GOP: PyTorch models, DataLoaders, va HuggingFace Datasets
+        KHONG the pickle giua cac @step trong Metaflow.
         """
         import numpy as np
         import torch
@@ -59,7 +63,9 @@ class PhoBERTSentimentFlow(FlowSpec):
         from sklearn.metrics import accuracy_score, f1_score
         from shared.config_phobert import (
             PHOBERT_MODEL_NAME, NUM_LABELS, DATASET_NAME, TEXT_COL, LABEL_COL,
+            SAMPLE_SIZE, SEED,
         )
+        from shared.sampling_utils import sample_dataset
 
         # ========== LOAD DATASET ==========
         print("  Loading UIT-VSFC dataset...")
@@ -78,7 +84,12 @@ class PhoBERTSentimentFlow(FlowSpec):
             "validation": Dataset.from_pandas(val_df),
             "test": Dataset.from_pandas(test_df),
         })
-        print(f"  Data: {len(dataset['train'])} train, {len(dataset['validation'])} val, {len(dataset['test'])} test")
+        print(f"  Full data: {len(dataset['train'])} train, {len(dataset['validation'])} val, {len(dataset['test'])} test")
+
+        # ========== STRATIFIED SAMPLING ==========
+        print(f"  Sampling {SAMPLE_SIZE} train samples (seed={SEED}, stratified)...")
+        dataset = sample_dataset(dataset, LABEL_COL, SAMPLE_SIZE, SEED)
+        print(f"  Sampled: {len(dataset['train'])} train, {len(dataset['validation'])} val, {len(dataset['test'])} test")
 
         # ========== TOKENIZE ==========
         print("  Tokenizing with PhoBERT...")
@@ -110,21 +121,24 @@ class PhoBERTSentimentFlow(FlowSpec):
         model = AutoModelForSequenceClassification.from_pretrained(
             PHOBERT_MODEL_NAME, num_labels=NUM_LABELS
         )
+        model.gradient_checkpointing_enable()
 
         training_args = TrainingArguments(
             output_dir="./results_uc2_metaflow",
             num_train_epochs=self.epochs,
             per_device_train_batch_size=self.batch_size,
             per_device_eval_batch_size=self.batch_size,
+            gradient_accumulation_steps=self.grad_accum,
             learning_rate=self.lr,
             eval_strategy="epoch",
             save_strategy="epoch",
             load_best_model_at_end=True,
             metric_for_best_model="accuracy",
-            logging_steps=50,
+            logging_steps=10,
             fp16=torch.cuda.is_available(),
             report_to="none",
             save_total_limit=1,
+            dataloader_num_workers=0,
         )
 
         trainer = Trainer(
@@ -155,7 +169,7 @@ class PhoBERTSentimentFlow(FlowSpec):
         print(f"  Train time: {self.train_time:.1f}s")
         print(f"  Eval time: {self.eval_time:.1f}s")
         print(f"  Pipeline time: {self.pipeline_time:.1f}s")
-        print(f"  GPU: {self.gpu_name}")
+        print(f"  Device: {self.gpu_name}")
         self.next(self.end)
 
     @step
@@ -163,14 +177,15 @@ class PhoBERTSentimentFlow(FlowSpec):
         print(f"\n{'='*50}")
         print(f"  FINAL RESULT")
         print(f"  Model: vinai/phobert-base")
-        print(f"  Dataset: UIT-VSFC")
+        print(f"  Dataset: UIT-VSFC (500 samples stratified)")
         print(f"  Accuracy: {self.accuracy:.4f}")
         print(f"  F1-macro: {self.f1_macro:.4f}")
         print(f"  Train time: {self.train_time:.1f}s")
         print(f"  Eval time: {self.eval_time:.1f}s")
         print(f"  Pipeline time: {self.pipeline_time:.1f}s")
-        print(f"  Config: lr={self.lr}, batch={self.batch_size}, epochs={self.epochs}, optimizer=AdamW")
-        print(f"  Platform: Metaflow Local Mode (Colab {self.gpu_name})")
+        print(f"  Config: lr={self.lr}, batch={self.batch_size}, "
+              f"grad_accum={self.grad_accum}, epochs={self.epochs}, optimizer=AdamW")
+        print(f"  Platform: Metaflow Local Mode (GCP VM {self.gpu_name})")
         print(f"{'='*50}")
 
 

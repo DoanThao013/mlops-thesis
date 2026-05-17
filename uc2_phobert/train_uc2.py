@@ -3,13 +3,13 @@ UC2 PhoBERT Vietnamese Sentiment — MLflow Pipeline
 Dataset: UIT-VSFC (Vietnamese Students Feedback Corpus)
 Model: vinai/phobert-base (HuggingFace)
 
-Chạy trên Google Colab (cần GPU T4):
+Chay tren GCP VM e2-medium:
     python3 -u train_uc2.py --mode all
 
 Modes:
-    all    = chạy repeat (TC7) + config sweep (TC2)
-    repeat = chỉ lặp 3 lần để đo TC7
-    tc2    = chỉ chạy config sweep
+    all    = chay repeat (TC7) + config sweep (TC2)
+    repeat = chi lap 3 lan de do TC7
+    tc2    = chi chay config sweep
 """
 import sys
 import os
@@ -32,19 +32,20 @@ from sklearn.metrics import accuracy_score, f1_score
 from shared.config_phobert import (
     PHOBERT_MODEL_NAME, NUM_LABELS, MAX_LENGTH,
     HPARAMS, DATASET_NAME, LABEL_COL, TEXT_COL,
+    SAMPLE_SIZE, SEED, NUM_RUNS,
 )
+from shared.sampling_utils import sample_dataset
 
 # CONFIG
 CONFIG = {
-    "tracking_uri":  "http://<GCP_EXTERNAL_IP>:5000",
+    "tracking_uri":  "http://localhost:5000",
     "experiment":    "UC2_PhoBERT_MLflow",
-    "num_runs":      3,
 
-    # TC2 — Config sweep (3 bộ config khác nhau)
+    # TC2 — Config sweep (3 bo config khac nhau)
     "tc2_configs": [
-        {"lr": 1e-5, "batch_size": 16, "epochs": 3},
-        {"lr": 2e-5, "batch_size": 16, "epochs": 3},
-        {"lr": 3e-5, "batch_size": 32, "epochs": 3},
+        {"lr": 1e-5, "batch_size": 2, "epochs": 3},
+        {"lr": 2e-5, "batch_size": 2, "epochs": 3},
+        {"lr": 3e-5, "batch_size": 4, "epochs": 3},
     ],
 }
 
@@ -52,11 +53,16 @@ CONFIG = {
 # DATA LOADING & TOKENIZATION
 
 def load_and_tokenize():
-    """Load UIT-VSFC dataset và tokenize bằng PhoBERT tokenizer."""
+    """Load UIT-VSFC dataset, sample 500 mau, tokenize bang PhoBERT tokenizer."""
     print("  Loading dataset:", DATASET_NAME)
     dataset = load_dataset(DATASET_NAME)
 
-    print(f"  Train: {len(dataset['train'])}, Val: {len(dataset['validation'])}, Test: {len(dataset['test'])}")
+    print(f"  Full data: Train={len(dataset['train'])}, Val={len(dataset['validation'])}, Test={len(dataset['test'])}")
+
+    # Stratified sampling
+    print(f"  Sampling {SAMPLE_SIZE} train samples (seed={SEED}, stratified)...")
+    dataset = sample_dataset(dataset, LABEL_COL, SAMPLE_SIZE, SEED)
+    print(f"  Sampled: Train={len(dataset['train'])}, Val={len(dataset['validation'])}, Test={len(dataset['test'])}")
 
     tokenizer = AutoTokenizer.from_pretrained(PHOBERT_MODEL_NAME)
 
@@ -87,7 +93,10 @@ def compute_metrics(eval_pred):
 
 
 def train_one_run(tokenized, tokenizer, lr, batch_size, epochs, run_name):
-    """Fine-tune PhoBERT 1 lần, log toàn bộ lên MLflow."""
+    """Fine-tune PhoBERT 1 lan, log toan bo len MLflow."""
+
+    grad_accum = HPARAMS["gradient_accumulation_steps"]
+    use_grad_checkpoint = HPARAMS["gradient_checkpointing"]
 
     with mlflow.start_run(run_name=run_name):
         start_time = time.time()
@@ -95,13 +104,18 @@ def train_one_run(tokenized, tokenizer, lr, batch_size, epochs, run_name):
         # ---- Log params ----
         mlflow.log_param("model", PHOBERT_MODEL_NAME)
         mlflow.log_param("dataset", DATASET_NAME)
+        mlflow.log_param("sample_size", SAMPLE_SIZE)
+        mlflow.log_param("seed", SEED)
         mlflow.log_param("num_labels", NUM_LABELS)
         mlflow.log_param("max_length", MAX_LENGTH)
         mlflow.log_param("lr", lr)
         mlflow.log_param("batch_size", batch_size)
+        mlflow.log_param("effective_batch_size", batch_size * grad_accum)
+        mlflow.log_param("gradient_accumulation_steps", grad_accum)
+        mlflow.log_param("gradient_checkpointing", use_grad_checkpoint)
         mlflow.log_param("epochs", epochs)
         mlflow.log_param("optimizer", "AdamW")
-        mlflow.log_param("platform", "MLflow-GCP")
+        mlflow.log_param("platform", "MLflow-GCP-VM")
         mlflow.log_param("gpu", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU")
 
         # ---- Load model ----
@@ -110,20 +124,26 @@ def train_one_run(tokenized, tokenizer, lr, batch_size, epochs, run_name):
             num_labels=NUM_LABELS,
         )
 
+        if use_grad_checkpoint:
+            model.gradient_checkpointing_enable()
+
         # ---- Training args ----
         training_args = TrainingArguments(
             output_dir="./results_uc2",
             num_train_epochs=epochs,
             per_device_train_batch_size=batch_size,
             per_device_eval_batch_size=batch_size,
+            gradient_accumulation_steps=grad_accum,
             learning_rate=lr,
             eval_strategy="epoch",
             save_strategy="epoch",
             load_best_model_at_end=True,
             metric_for_best_model="accuracy",
-            logging_steps=50,
+            logging_steps=10,
             fp16=torch.cuda.is_available(),
             report_to="none",
+            save_total_limit=1,
+            dataloader_num_workers=0,
         )
 
         # ---- Trainer ----
@@ -172,10 +192,10 @@ def main(mode="all"):
 
     if mode in ("all", "repeat"):
         print(f"\n{'='*60}")
-        print(f" PHẦN 1: Chạy lặp {CONFIG['num_runs']} lần — đo TC7")
+        print(f" PHAN 1: Chay lap {NUM_RUNS} lan — do TC7")
         print(f"{'='*60}")
-        for i in range(1, CONFIG["num_runs"] + 1):
-            print(f"\n  [PhoBERT] Lần {i}/{CONFIG['num_runs']}")
+        for i in range(1, NUM_RUNS + 1):
+            print(f"\n  [PhoBERT] Lan {i}/{NUM_RUNS}")
             train_one_run(
                 tokenized=tokenized,
                 tokenizer=tokenizer,
@@ -187,7 +207,7 @@ def main(mode="all"):
 
     if mode in ("all", "tc2"):
         print(f"\n{'='*60}")
-        print(f" PHẦN 2: TC2 Config Sweep ({len(CONFIG['tc2_configs'])} configs)")
+        print(f" PHAN 2: TC2 Config Sweep ({len(CONFIG['tc2_configs'])} configs)")
         print(f"{'='*60}")
         for cfg in CONFIG["tc2_configs"]:
             run_name = f"TC2_lr{cfg['lr']}_batch{cfg['batch_size']}"
@@ -200,7 +220,7 @@ def main(mode="all"):
             )
 
     print(f"\n{'='*60}")
-    print(f" Hoàn thành UC2! Xem kết quả: {CONFIG['tracking_uri']}")
+    print(f" Hoan thanh UC2! Xem ket qua: {CONFIG['tracking_uri']}")
     print(f"{'='*60}")
 
 
@@ -210,7 +230,7 @@ if __name__ == "__main__":
         "--mode",
         choices=["all", "repeat", "tc2"],
         default="all",
-        help="all=chạy tất cả | repeat=chỉ lặp TC7 | tc2=chỉ config sweep",
+        help="all=chay tat ca | repeat=chi lap TC7 | tc2=chi config sweep",
     )
     args = parser.parse_args()
     main(args.mode)
