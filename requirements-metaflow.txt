@@ -1,0 +1,22 @@
+# Slim requirements for VM-metaflow (no MLflow/DVC/CUDA)
+# Use: pip install --no-cache-dir -r requirements-metaflow.txt
+
+# Core ML (CPU only — pinned to match VM-mlflow)
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.11.0+cpu
+torchvision==0.26.0+cpu
+
+# Numerical
+numpy>=1.24.0
+scikit-learn>=1.3.0
+pandas>=2.0.0
+pyarrow>=14.0.0
+
+# UC2 PhoBERT
+transformers>=4.30.0
+datasets>=2.14.0
+accelerate>=0.21.0
+sentencepiece>=0.1.99
+
+# Metaflow (local mode, no remote datastore)
+metaflow>=2.10.0
