@@ -20,7 +20,8 @@ import torch
 import time
 import argparse
 import numpy as np
-from datasets import load_dataset
+import pandas as pd
+from datasets import Dataset, DatasetDict
 from transformers import (
     AutoTokenizer,
     AutoModelForSequenceClassification,
@@ -55,7 +56,18 @@ CONFIG = {
 def load_and_tokenize():
     """Load UIT-VSFC dataset, sample 500 mau, tokenize bang PhoBERT tokenizer."""
     print("  Loading dataset:", DATASET_NAME)
-    dataset = load_dataset(DATASET_NAME)
+
+    # Doc parquet truc tiep tu HuggingFace (datasets v4.x bo ho tro dataset script)
+    base = "https://huggingface.co/datasets/uitnlp/vietnamese_students_feedback/resolve/refs%2Fconvert%2Fparquet/default"
+    urls = {
+        "train":      f"{base}/train/0000.parquet",
+        "validation": f"{base}/validation/0000.parquet",
+        "test":       f"{base}/test/0000.parquet",
+    }
+    dataset = DatasetDict({
+        split: Dataset.from_pandas(pd.read_parquet(url))
+        for split, url in urls.items()
+    })
 
     print(f"  Full data: Train={len(dataset['train'])}, Val={len(dataset['validation'])}, Test={len(dataset['test'])}")
 
