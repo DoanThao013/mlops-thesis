@@ -1,7 +1,7 @@
 """
 Xem kết quả tất cả runs — Metaflow Client API
 
-Chạy:
+Chạy tu BAT KY thu muc nao:
   python3 view_results.py
 """
 import os
@@ -11,6 +11,11 @@ os.environ["METAFLOW_DEFAULT_METADATA"] = "local"
 from metaflow import Flow
 import pandas as pd
 
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+UC1_DIR = os.path.join(SCRIPT_DIR, "uc1_metaflow")
+UC2_DIR = os.path.join(SCRIPT_DIR, "uc2_metaflow")
+OUTPUT_DIR = SCRIPT_DIR  # CSV ghi vao metaflow/
+
 
 def view_uc1():
     """Xem kết quả UC1 MNIST"""
@@ -18,7 +23,9 @@ def view_uc1():
     print("  UC1 MNIST — Metaflow Results")
     print("=" * 60)
 
+    original_cwd = os.getcwd()
     try:
+        os.chdir(UC1_DIR)
         flow = Flow('MNISTFlow')
         results = []
         for run in flow.runs():
@@ -39,8 +46,9 @@ def view_uc1():
         if results:
             df = pd.DataFrame(results)
             print(df.to_string(index=False))
-            df.to_csv("metaflow_uc1_results.csv", index=False)
-            print("\n Saved: metaflow_uc1_results.csv")
+            csv_path = os.path.join(OUTPUT_DIR, "metaflow_uc1_results.csv")
+            df.to_csv(csv_path, index=False)
+            print(f"\n Saved: {csv_path}")
 
             for model in df['model'].unique():
                 subset = df[df['model'] == model]
@@ -52,6 +60,8 @@ def view_uc1():
     except Exception as e:
         print(f"  Lỗi: {e}")
         print("  Chưa có flow MNISTFlow. Chạy UC1 trước.")
+    finally:
+        os.chdir(original_cwd)
 
 
 def view_uc2():
@@ -60,7 +70,9 @@ def view_uc2():
     print("  UC2 PhoBERT — Metaflow Results")
     print("=" * 60)
 
+    original_cwd = os.getcwd()
     try:
+        os.chdir(UC2_DIR)
         flow = Flow('PhoBERTSentimentFlow')
         results = []
         for run in flow.runs():
@@ -81,8 +93,9 @@ def view_uc2():
         if results:
             df = pd.DataFrame(results)
             print(df.to_string(index=False))
-            df.to_csv("metaflow_uc2_results.csv", index=False)
-            print("\n Saved: metaflow_uc2_results.csv")
+            csv_path = os.path.join(OUTPUT_DIR, "metaflow_uc2_results.csv")
+            df.to_csv(csv_path, index=False)
+            print(f"\n Saved: {csv_path}")
 
             print(f"\n  TB (n={len(df)}): "
                   f"acc={df['accuracy'].mean():.4f}, "
@@ -93,6 +106,8 @@ def view_uc2():
     except Exception as e:
         print(f"  Lỗi: {e}")
         print("  Chưa có flow PhoBERTSentimentFlow. Chạy UC2 trước.")
+    finally:
+        os.chdir(original_cwd)
 
 
 if __name__ == '__main__':

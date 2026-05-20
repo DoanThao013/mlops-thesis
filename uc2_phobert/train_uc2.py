@@ -33,7 +33,7 @@ from sklearn.metrics import accuracy_score, f1_score
 from shared.config_phobert import (
     PHOBERT_MODEL_NAME, NUM_LABELS, MAX_LENGTH,
     HPARAMS, DATASET_NAME, LABEL_COL, TEXT_COL,
-    SAMPLE_SIZE, SEED, NUM_RUNS,
+    SAMPLE_SIZE, SEED, NUM_RUNS, TC2_CONFIGS,
 )
 from shared.sampling_utils import sample_dataset
 
@@ -41,13 +41,6 @@ from shared.sampling_utils import sample_dataset
 CONFIG = {
     "tracking_uri":  "http://localhost:5000",
     "experiment":    "UC2_PhoBERT_MLflow",
-
-    # TC2 — Config sweep (3 bo config khac nhau)
-    "tc2_configs": [
-        {"lr": 1e-5, "batch_size": 2, "epochs": 3},
-        {"lr": 2e-5, "batch_size": 2, "epochs": 3},
-        {"lr": 3e-5, "batch_size": 4, "epochs": 3},
-    ],
 }
 
 
@@ -219,9 +212,9 @@ def main(mode="all"):
 
     if mode in ("all", "tc2"):
         print(f"\n{'='*60}")
-        print(f" PHAN 2: TC2 Config Sweep ({len(CONFIG['tc2_configs'])} configs)")
+        print(f" PHAN 2: TC2 Config Sweep ({len(TC2_CONFIGS)} configs)")
         print(f"{'='*60}")
-        for cfg in CONFIG["tc2_configs"]:
+        for cfg in TC2_CONFIGS:
             run_name = f"TC2_lr{cfg['lr']}_batch{cfg['batch_size']}"
             print(f"\n  Config: {run_name}")
             train_one_run(

@@ -15,19 +15,21 @@ os.environ["METAFLOW_DEFAULT_METADATA"] = "local"
 from metaflow import FlowSpec, step, Parameter
 import time
 
+from shared.config_phobert import HPARAMS, MAX_LENGTH
+
 
 class PhoBERTSentimentFlow(FlowSpec):
     """Pipeline UC2 PhoBERT Sentiment — Metaflow"""
 
-    lr = Parameter('lr', default=2e-5, type=float,
+    lr = Parameter('lr', default=HPARAMS["lr"], type=float,
                    help='Learning rate')
-    batch_size = Parameter('batch_size', default=2, type=int,
+    batch_size = Parameter('batch_size', default=HPARAMS["batch_size"], type=int,
                            help='Batch size (effective = batch_size x grad_accum)')
-    epochs = Parameter('epochs', default=3, type=int,
+    epochs = Parameter('epochs', default=HPARAMS["epochs"], type=int,
                        help='Number of epochs')
-    max_length = Parameter('max_length', default=128, type=int,
+    max_length = Parameter('max_length', default=MAX_LENGTH, type=int,
                            help='Max token length for PhoBERT')
-    grad_accum = Parameter('grad_accum', default=8, type=int,
+    grad_accum = Parameter('grad_accum', default=HPARAMS["gradient_accumulation_steps"], type=int,
                            help='Gradient accumulation steps')
 
     @step

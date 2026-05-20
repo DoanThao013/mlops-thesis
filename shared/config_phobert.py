@@ -31,5 +31,12 @@ NUM_RUNS      = 3       # So lan chay de lay trung binh cho TC7
 LABEL_COL     = "sentiment"
 TEXT_COL      = "sentence"
 
+# TC2 — config sweep
+TC2_CONFIGS = [
+    {"lr": 1e-5, "batch_size": 2, "epochs": 3},
+    {"lr": 2e-5, "batch_size": 2, "epochs": 3},
+    {"lr": 3e-5, "batch_size": 4, "epochs": 3},
+]
+
 # Label mapping
 LABEL_MAP = {0: "NEG", 1: "NEU", 2: "POS"}

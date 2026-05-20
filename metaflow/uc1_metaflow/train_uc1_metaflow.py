@@ -16,17 +16,19 @@ os.environ["METAFLOW_DEFAULT_METADATA"] = "local"
 from metaflow import FlowSpec, step, Parameter
 import time
 
+from shared.models_mnist import HPARAMS
+
 
 class MNISTFlow(FlowSpec):
     """Pipeline UC1 MNIST — Metaflow"""
 
     model_name = Parameter('model', default='SimpleNN',
                            help='Model: SimpleNN, DeepNN, or CNN')
-    lr = Parameter('lr', default=0.001, type=float,
+    lr = Parameter('lr', default=HPARAMS["lr"], type=float,
                    help='Learning rate')
-    batch_size = Parameter('batch_size', default=64, type=int,
+    batch_size = Parameter('batch_size', default=HPARAMS["batch_size"], type=int,
                            help='Batch size')
-    epochs = Parameter('epochs', default=10, type=int,
+    epochs = Parameter('epochs', default=HPARAMS["epochs"], type=int,
                        help='Number of epochs')
 
     @step

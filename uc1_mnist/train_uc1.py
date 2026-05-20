@@ -18,23 +18,16 @@ import torchvision.transforms as transforms
 import time
 import argparse
 
-from shared.models_mnist import SimpleNN, DeepNN, CNN, MODEL_CLASSES, HPARAMS
+from shared.models_mnist import (
+    SimpleNN, DeepNN, CNN, MODEL_CLASSES,
+    HPARAMS, MODELS, NUM_RUNS, TC2_CONFIGS,
+)
 
 # CONFIG
 CONFIG = {
     "tracking_uri":  "http://localhost:5000",
     "experiment":    "UC1_MNIST_MLflow",
     "data_path":     "./data",
-    "num_runs":      3,
-
-    "models": ["SimpleNN", "DeepNN", "CNN"],
-
-    # TC2 — Config sweep
-    "tc2_configs": [
-        {"lr": 0.001, "batch_size": 32,  "epochs": 10},
-        {"lr": 0.01,  "batch_size": 64,  "epochs": 10},
-        {"lr": 0.05,  "batch_size": 128, "epochs": 10},
-    ],
 }
 
 
@@ -116,9 +109,9 @@ def main(mode="all"):
 
     if mode in ("all", "repeat"):
         print("\n PHẦN 1: Chạy lặp 9 runs (3 model × 3 lần) — đo reproducibility")
-        for model_name in CONFIG["models"]:
-            for i in range(1, CONFIG["num_runs"] + 1):
-                print(f"\n  [{model_name}] Lần {i}/{CONFIG['num_runs']}")
+        for model_name in MODELS:
+            for i in range(1, NUM_RUNS + 1):
+                print(f"\n  [{model_name}] Lần {i}/{NUM_RUNS}")
                 train_one_run(
                     model_name = model_name,
                     lr         = HPARAMS["lr"],
@@ -129,7 +122,7 @@ def main(mode="all"):
 
     if mode in ("all", "tc2"):
         print("\n PHẦN 2: TC2 Config Sweep")
-        for cfg in CONFIG["tc2_configs"]:
+        for cfg in TC2_CONFIGS:
             run_name = f"TC2_lr{cfg['lr']}_batch{cfg['batch_size']}"
             print(f"\n  Config: {run_name}")
             train_one_run(
