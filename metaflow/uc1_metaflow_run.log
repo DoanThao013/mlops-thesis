@@ -1,0 +1,689 @@
+==========================================
+ UC1 MNIST — Metaflow (GCP VM)
+==========================================
+
+>>> SimpleNN x 3 runs (TC7)
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 16:40:36.061 Workflow starting (run-id 1779208836058684):
+2026-05-19 16:40:36.085 [1779208836058684/start/1 (pid 3178)] Task is starting.
+2026-05-19 16:40:36.712 [1779208836058684/start/1 (pid 3178)] 
+2026-05-19 16:40:36.715 [1779208836058684/start/1 (pid 3178)] ==================================================
+2026-05-19 16:40:36.715 [1779208836058684/start/1 (pid 3178)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 16:40:36.715 [1779208836058684/start/1 (pid 3178)] Model: SimpleNN
+2026-05-19 16:40:36.721 [1779208836058684/start/1 (pid 3178)] Config: lr=0.001, batch=64, epochs=10
+2026-05-19 16:40:36.818 [1779208836058684/start/1 (pid 3178)] Optimizer: Adam
+2026-05-19 16:40:36.818 [1779208836058684/start/1 (pid 3178)] ==================================================
+2026-05-19 16:40:36.823 [1779208836058684/start/1 (pid 3178)] Task finished successfully.
+2026-05-19 16:40:36.868 [1779208836058684/train_and_evaluate/2 (pid 3185)] Task is starting.
+2026-05-19 16:40:45.569 [1779208836058684/train_and_evaluate/2 (pid 3185)] Data: 60000 train, 10000 test
+2026-05-19 16:40:45.736 [1779208836058684/train_and_evaluate/2 (pid 3185)] Training SimpleNN...
+2026-05-19 16:41:02.863 [1779208836058684/train_and_evaluate/2 (pid 3185)] Epoch 1/10: loss=0.2608
+2026-05-19 16:41:18.411 [1779208836058684/train_and_evaluate/2 (pid 3185)] Epoch 2/10: loss=0.1126
+2026-05-19 16:41:33.842 [1779208836058684/train_and_evaluate/2 (pid 3185)] Epoch 3/10: loss=0.0780
+2026-05-19 16:41:48.885 [1779208836058684/train_and_evaluate/2 (pid 3185)] Epoch 4/10: loss=0.0602
+2026-05-19 16:42:03.918 [1779208836058684/train_and_evaluate/2 (pid 3185)] Epoch 5/10: loss=0.0465
+2026-05-19 16:42:19.182 [1779208836058684/train_and_evaluate/2 (pid 3185)] Epoch 6/10: loss=0.0388
+2026-05-19 16:42:34.384 [1779208836058684/train_and_evaluate/2 (pid 3185)] Epoch 7/10: loss=0.0328
+2026-05-19 16:42:52.178 [1779208836058684/train_and_evaluate/2 (pid 3185)] Epoch 8/10: loss=0.0272
+2026-05-19 16:43:23.594 [1779208836058684/train_and_evaluate/2 (pid 3185)] Epoch 9/10: loss=0.0238
+2026-05-19 16:43:54.591 [1779208836058684/train_and_evaluate/2 (pid 3185)] Epoch 10/10: loss=0.0200
+2026-05-19 16:43:59.109 [1779208836058684/train_and_evaluate/2 (pid 3185)] 
+2026-05-19 16:44:00.884 [1779208836058684/train_and_evaluate/2 (pid 3185)] Accuracy: 0.9784
+2026-05-19 16:44:00.885 [1779208836058684/train_and_evaluate/2 (pid 3185)] Train time: 188.9s
+2026-05-19 16:44:00.885 [1779208836058684/train_and_evaluate/2 (pid 3185)] Eval time: 4.5s
+2026-05-19 16:44:00.885 [1779208836058684/train_and_evaluate/2 (pid 3185)] Pipeline time: 202.4s
+2026-05-19 16:44:00.886 [1779208836058684/train_and_evaluate/2 (pid 3185)] Task finished successfully.
+2026-05-19 16:44:00.892 [1779208836058684/end/3 (pid 3250)] Task is starting.
+2026-05-19 16:44:01.672 [1779208836058684/end/3 (pid 3250)] 
+2026-05-19 16:44:01.672 [1779208836058684/end/3 (pid 3250)] ==================================================
+2026-05-19 16:44:01.673 [1779208836058684/end/3 (pid 3250)] FINAL RESULT
+2026-05-19 16:44:01.673 [1779208836058684/end/3 (pid 3250)] Model: SimpleNN
+2026-05-19 16:44:01.673 [1779208836058684/end/3 (pid 3250)] Accuracy: 0.9784
+2026-05-19 16:44:01.674 [1779208836058684/end/3 (pid 3250)] Train time: 188.9s
+2026-05-19 16:44:01.674 [1779208836058684/end/3 (pid 3250)] Eval time: 4.5s
+2026-05-19 16:44:01.674 [1779208836058684/end/3 (pid 3250)] Pipeline time: 202.4s
+2026-05-19 16:44:01.676 [1779208836058684/end/3 (pid 3250)] Config: lr=0.001, batch=64, epochs=10, optimizer=Adam
+2026-05-19 16:44:01.912 [1779208836058684/end/3 (pid 3250)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 16:44:01.912 [1779208836058684/end/3 (pid 3250)] ==================================================
+2026-05-19 16:44:01.915 [1779208836058684/end/3 (pid 3250)] Task finished successfully.
+2026-05-19 16:44:01.917 Done!
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 16:44:02.929 Workflow starting (run-id 1779209042927361):
+2026-05-19 16:44:02.952 [1779209042927361/start/1 (pid 3267)] Task is starting.
+2026-05-19 16:44:04.095 [1779209042927361/start/1 (pid 3267)] 
+2026-05-19 16:44:04.096 [1779209042927361/start/1 (pid 3267)] ==================================================
+2026-05-19 16:44:04.096 [1779209042927361/start/1 (pid 3267)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 16:44:04.096 [1779209042927361/start/1 (pid 3267)] Model: SimpleNN
+2026-05-19 16:44:04.097 [1779209042927361/start/1 (pid 3267)] Config: lr=0.001, batch=64, epochs=10
+2026-05-19 16:44:04.191 [1779209042927361/start/1 (pid 3267)] Optimizer: Adam
+2026-05-19 16:44:04.191 [1779209042927361/start/1 (pid 3267)] ==================================================
+2026-05-19 16:44:04.192 [1779209042927361/start/1 (pid 3267)] Task finished successfully.
+2026-05-19 16:44:04.198 [1779209042927361/train_and_evaluate/2 (pid 3276)] Task is starting.
+2026-05-19 16:44:11.666 [1779209042927361/train_and_evaluate/2 (pid 3276)] Data: 60000 train, 10000 test
+2026-05-19 16:44:11.669 [1779209042927361/train_and_evaluate/2 (pid 3276)] Training SimpleNN...
+2026-05-19 16:44:44.447 [1779209042927361/train_and_evaluate/2 (pid 3276)] Epoch 1/10: loss=0.2543
+2026-05-19 16:45:16.675 [1779209042927361/train_and_evaluate/2 (pid 3276)] Epoch 2/10: loss=0.1128
+2026-05-19 16:45:48.635 [1779209042927361/train_and_evaluate/2 (pid 3276)] Epoch 3/10: loss=0.0778
+2026-05-19 16:46:20.609 [1779209042927361/train_and_evaluate/2 (pid 3276)] Epoch 4/10: loss=0.0570
+2026-05-19 16:46:53.355 [1779209042927361/train_and_evaluate/2 (pid 3276)] Epoch 5/10: loss=0.0469
+2026-05-19 16:47:25.691 [1779209042927361/train_and_evaluate/2 (pid 3276)] Epoch 6/10: loss=0.0369
+2026-05-19 16:47:57.832 [1779209042927361/train_and_evaluate/2 (pid 3276)] Epoch 7/10: loss=0.0307
+2026-05-19 16:48:30.393 [1779209042927361/train_and_evaluate/2 (pid 3276)] Epoch 8/10: loss=0.0248
+2026-05-19 16:49:02.918 [1779209042927361/train_and_evaluate/2 (pid 3276)] Epoch 9/10: loss=0.0235
+2026-05-19 16:49:03.920 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 16:49:03.921 No tasks are waiting in the queue.
+2026-05-19 16:49:03.921 end step has not started
+2026-05-19 16:49:35.674 [1779209042927361/train_and_evaluate/2 (pid 3276)] Epoch 10/10: loss=0.0186
+2026-05-19 16:49:40.382 [1779209042927361/train_and_evaluate/2 (pid 3276)] 
+2026-05-19 16:49:42.166 [1779209042927361/train_and_evaluate/2 (pid 3276)] Accuracy: 0.9797
+2026-05-19 16:49:42.167 [1779209042927361/train_and_evaluate/2 (pid 3276)] Train time: 324.0s
+2026-05-19 16:49:42.167 [1779209042927361/train_and_evaluate/2 (pid 3276)] Eval time: 4.7s
+2026-05-19 16:49:42.167 [1779209042927361/train_and_evaluate/2 (pid 3276)] Pipeline time: 336.3s
+2026-05-19 16:49:42.168 [1779209042927361/train_and_evaluate/2 (pid 3276)] Task finished successfully.
+2026-05-19 16:49:42.175 [1779209042927361/end/3 (pid 3607)] Task is starting.
+2026-05-19 16:49:43.089 [1779209042927361/end/3 (pid 3607)] 
+2026-05-19 16:49:43.089 [1779209042927361/end/3 (pid 3607)] ==================================================
+2026-05-19 16:49:43.090 [1779209042927361/end/3 (pid 3607)] FINAL RESULT
+2026-05-19 16:49:43.090 [1779209042927361/end/3 (pid 3607)] Model: SimpleNN
+2026-05-19 16:49:43.090 [1779209042927361/end/3 (pid 3607)] Accuracy: 0.9797
+2026-05-19 16:49:43.090 [1779209042927361/end/3 (pid 3607)] Train time: 324.0s
+2026-05-19 16:49:43.090 [1779209042927361/end/3 (pid 3607)] Eval time: 4.7s
+2026-05-19 16:49:43.091 [1779209042927361/end/3 (pid 3607)] Pipeline time: 336.3s
+2026-05-19 16:49:43.093 [1779209042927361/end/3 (pid 3607)] Config: lr=0.001, batch=64, epochs=10, optimizer=Adam
+2026-05-19 16:49:43.194 [1779209042927361/end/3 (pid 3607)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 16:49:43.194 [1779209042927361/end/3 (pid 3607)] ==================================================
+2026-05-19 16:49:43.197 [1779209042927361/end/3 (pid 3607)] Task finished successfully.
+2026-05-19 16:49:43.199 Done!
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 16:49:44.195 Workflow starting (run-id 1779209384192856):
+2026-05-19 16:49:44.343 [1779209384192856/start/1 (pid 3624)] Task is starting.
+2026-05-19 16:49:45.363 [1779209384192856/start/1 (pid 3624)] 
+2026-05-19 16:49:45.365 [1779209384192856/start/1 (pid 3624)] ==================================================
+2026-05-19 16:49:45.366 [1779209384192856/start/1 (pid 3624)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 16:49:45.366 [1779209384192856/start/1 (pid 3624)] Model: SimpleNN
+2026-05-19 16:49:45.591 [1779209384192856/start/1 (pid 3624)] Config: lr=0.001, batch=64, epochs=10
+2026-05-19 16:49:45.591 [1779209384192856/start/1 (pid 3624)] Optimizer: Adam
+2026-05-19 16:49:45.592 [1779209384192856/start/1 (pid 3624)] ==================================================
+2026-05-19 16:49:45.593 [1779209384192856/start/1 (pid 3624)] Task finished successfully.
+2026-05-19 16:49:45.599 [1779209384192856/train_and_evaluate/2 (pid 3633)] Task is starting.
+2026-05-19 16:49:53.186 [1779209384192856/train_and_evaluate/2 (pid 3633)] Data: 60000 train, 10000 test
+2026-05-19 16:49:53.188 [1779209384192856/train_and_evaluate/2 (pid 3633)] Training SimpleNN...
+2026-05-19 16:50:25.650 [1779209384192856/train_and_evaluate/2 (pid 3633)] Epoch 1/10: loss=0.2619
+2026-05-19 16:50:57.660 [1779209384192856/train_and_evaluate/2 (pid 3633)] Epoch 2/10: loss=0.1153
+2026-05-19 16:51:29.654 [1779209384192856/train_and_evaluate/2 (pid 3633)] Epoch 3/10: loss=0.0783
+2026-05-19 16:52:01.102 [1779209384192856/train_and_evaluate/2 (pid 3633)] Epoch 4/10: loss=0.0611
+2026-05-19 16:52:32.952 [1779209384192856/train_and_evaluate/2 (pid 3633)] Epoch 5/10: loss=0.0472
+2026-05-19 16:53:05.133 [1779209384192856/train_and_evaluate/2 (pid 3633)] Epoch 6/10: loss=0.0387
+2026-05-19 16:53:36.847 [1779209384192856/train_and_evaluate/2 (pid 3633)] Epoch 7/10: loss=0.0315
+2026-05-19 16:54:08.358 [1779209384192856/train_and_evaluate/2 (pid 3633)] Epoch 8/10: loss=0.0274
+2026-05-19 16:54:40.351 [1779209384192856/train_and_evaluate/2 (pid 3633)] Epoch 9/10: loss=0.0230
+2026-05-19 16:54:44.356 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 16:54:44.357 No tasks are waiting in the queue.
+2026-05-19 16:54:44.357 end step has not started
+2026-05-19 16:55:12.357 [1779209384192856/train_and_evaluate/2 (pid 3633)] Epoch 10/10: loss=0.0192
+2026-05-19 16:55:16.939 [1779209384192856/train_and_evaluate/2 (pid 3633)] 
+2026-05-19 16:55:18.872 [1779209384192856/train_and_evaluate/2 (pid 3633)] Accuracy: 0.9766
+2026-05-19 16:55:18.872 [1779209384192856/train_and_evaluate/2 (pid 3633)] Train time: 319.2s
+2026-05-19 16:55:18.872 [1779209384192856/train_and_evaluate/2 (pid 3633)] Eval time: 4.6s
+2026-05-19 16:55:18.872 [1779209384192856/train_and_evaluate/2 (pid 3633)] Pipeline time: 331.6s
+2026-05-19 16:55:18.874 [1779209384192856/train_and_evaluate/2 (pid 3633)] Task finished successfully.
+2026-05-19 16:55:18.882 [1779209384192856/end/3 (pid 3950)] Task is starting.
+2026-05-19 16:55:19.698 [1779209384192856/end/3 (pid 3950)] 
+2026-05-19 16:55:19.700 [1779209384192856/end/3 (pid 3950)] ==================================================
+2026-05-19 16:55:19.701 [1779209384192856/end/3 (pid 3950)] FINAL RESULT
+2026-05-19 16:55:19.701 [1779209384192856/end/3 (pid 3950)] Model: SimpleNN
+2026-05-19 16:55:19.948 [1779209384192856/end/3 (pid 3950)] Accuracy: 0.9766
+2026-05-19 16:55:19.948 [1779209384192856/end/3 (pid 3950)] Train time: 319.2s
+2026-05-19 16:55:19.948 [1779209384192856/end/3 (pid 3950)] Eval time: 4.6s
+2026-05-19 16:55:19.949 [1779209384192856/end/3 (pid 3950)] Pipeline time: 331.6s
+2026-05-19 16:55:19.949 [1779209384192856/end/3 (pid 3950)] Config: lr=0.001, batch=64, epochs=10, optimizer=Adam
+2026-05-19 16:55:19.949 [1779209384192856/end/3 (pid 3950)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 16:55:19.949 [1779209384192856/end/3 (pid 3950)] ==================================================
+2026-05-19 16:55:19.950 [1779209384192856/end/3 (pid 3950)] Task finished successfully.
+2026-05-19 16:55:19.952 Done!
+
+>>> DeepNN x 3 runs (TC7)
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 16:55:22.646 Workflow starting (run-id 1779209722640794):
+2026-05-19 16:55:22.688 [1779209722640794/start/1 (pid 3970)] Task is starting.
+2026-05-19 16:55:25.140 [1779209722640794/start/1 (pid 3970)] 
+2026-05-19 16:55:25.144 [1779209722640794/start/1 (pid 3970)] ==================================================
+2026-05-19 16:55:25.145 [1779209722640794/start/1 (pid 3970)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 16:55:25.145 [1779209722640794/start/1 (pid 3970)] Model: DeepNN
+2026-05-19 16:55:25.585 [1779209722640794/start/1 (pid 3970)] Config: lr=0.001, batch=64, epochs=10
+2026-05-19 16:55:25.586 [1779209722640794/start/1 (pid 3970)] Optimizer: Adam
+2026-05-19 16:55:25.586 [1779209722640794/start/1 (pid 3970)] ==================================================
+2026-05-19 16:55:25.593 [1779209722640794/start/1 (pid 3970)] Task finished successfully.
+2026-05-19 16:55:25.612 [1779209722640794/train_and_evaluate/2 (pid 3979)] Task is starting.
+2026-05-19 16:55:44.861 [1779209722640794/train_and_evaluate/2 (pid 3979)] Data: 60000 train, 10000 test
+2026-05-19 16:55:44.873 [1779209722640794/train_and_evaluate/2 (pid 3979)] Training DeepNN...
+2026-05-19 16:56:30.142 [1779209722640794/train_and_evaluate/2 (pid 3979)] Epoch 1/10: loss=0.2765
+2026-05-19 16:57:16.878 [1779209722640794/train_and_evaluate/2 (pid 3979)] Epoch 2/10: loss=0.1384
+2026-05-19 16:58:03.935 [1779209722640794/train_and_evaluate/2 (pid 3979)] Epoch 3/10: loss=0.1114
+2026-05-19 16:58:52.336 [1779209722640794/train_and_evaluate/2 (pid 3979)] Epoch 4/10: loss=0.0931
+2026-05-19 16:59:41.605 [1779209722640794/train_and_evaluate/2 (pid 3979)] Epoch 5/10: loss=0.0826
+2026-05-19 17:00:23.655 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 17:00:23.655 No tasks are waiting in the queue.
+2026-05-19 17:00:23.655 end step has not started
+2026-05-19 17:00:28.683 [1779209722640794/train_and_evaluate/2 (pid 3979)] Epoch 6/10: loss=0.0767
+2026-05-19 17:01:15.838 [1779209722640794/train_and_evaluate/2 (pid 3979)] Epoch 7/10: loss=0.0686
+2026-05-19 17:02:02.122 [1779209722640794/train_and_evaluate/2 (pid 3979)] Epoch 8/10: loss=0.0640
+2026-05-19 17:02:48.941 [1779209722640794/train_and_evaluate/2 (pid 3979)] Epoch 9/10: loss=0.0597
+2026-05-19 17:03:35.179 [1779209722640794/train_and_evaluate/2 (pid 3979)] Epoch 10/10: loss=0.0549
+2026-05-19 17:03:40.177 [1779209722640794/train_and_evaluate/2 (pid 3979)] 
+2026-05-19 17:03:41.924 [1779209722640794/train_and_evaluate/2 (pid 3979)] Accuracy: 0.9805
+2026-05-19 17:03:41.924 [1779209722640794/train_and_evaluate/2 (pid 3979)] Train time: 470.3s
+2026-05-19 17:03:41.925 [1779209722640794/train_and_evaluate/2 (pid 3979)] Eval time: 5.0s
+2026-05-19 17:03:41.925 [1779209722640794/train_and_evaluate/2 (pid 3979)] Pipeline time: 495.0s
+2026-05-19 17:03:41.926 [1779209722640794/train_and_evaluate/2 (pid 3979)] Task finished successfully.
+2026-05-19 17:03:41.932 [1779209722640794/end/3 (pid 4133)] Task is starting.
+2026-05-19 17:03:42.884 [1779209722640794/end/3 (pid 4133)] 
+2026-05-19 17:03:42.884 [1779209722640794/end/3 (pid 4133)] ==================================================
+2026-05-19 17:03:42.884 [1779209722640794/end/3 (pid 4133)] FINAL RESULT
+2026-05-19 17:03:42.885 [1779209722640794/end/3 (pid 4133)] Model: DeepNN
+2026-05-19 17:03:42.885 [1779209722640794/end/3 (pid 4133)] Accuracy: 0.9805
+2026-05-19 17:03:42.885 [1779209722640794/end/3 (pid 4133)] Train time: 470.3s
+2026-05-19 17:03:42.885 [1779209722640794/end/3 (pid 4133)] Eval time: 5.0s
+2026-05-19 17:03:42.885 [1779209722640794/end/3 (pid 4133)] Pipeline time: 495.0s
+2026-05-19 17:03:42.886 [1779209722640794/end/3 (pid 4133)] Config: lr=0.001, batch=64, epochs=10, optimizer=Adam
+2026-05-19 17:03:43.118 [1779209722640794/end/3 (pid 4133)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 17:03:43.118 [1779209722640794/end/3 (pid 4133)] ==================================================
+2026-05-19 17:03:43.119 [1779209722640794/end/3 (pid 4133)] Task finished successfully.
+2026-05-19 17:03:43.120 Done!
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 17:03:44.129 Workflow starting (run-id 1779210224126395):
+2026-05-19 17:03:44.151 [1779210224126395/start/1 (pid 4148)] Task is starting.
+2026-05-19 17:03:45.349 [1779210224126395/start/1 (pid 4148)] 
+2026-05-19 17:03:45.349 [1779210224126395/start/1 (pid 4148)] ==================================================
+2026-05-19 17:03:45.349 [1779210224126395/start/1 (pid 4148)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 17:03:45.349 [1779210224126395/start/1 (pid 4148)] Model: DeepNN
+2026-05-19 17:03:45.350 [1779210224126395/start/1 (pid 4148)] Config: lr=0.001, batch=64, epochs=10
+2026-05-19 17:03:45.448 [1779210224126395/start/1 (pid 4148)] Optimizer: Adam
+2026-05-19 17:03:45.448 [1779210224126395/start/1 (pid 4148)] ==================================================
+2026-05-19 17:03:45.449 [1779210224126395/start/1 (pid 4148)] Task finished successfully.
+2026-05-19 17:03:45.456 [1779210224126395/train_and_evaluate/2 (pid 4155)] Task is starting.
+2026-05-19 17:03:54.455 [1779210224126395/train_and_evaluate/2 (pid 4155)] Data: 60000 train, 10000 test
+2026-05-19 17:03:54.587 [1779210224126395/train_and_evaluate/2 (pid 4155)] Training DeepNN...
+2026-05-19 17:04:38.850 [1779210224126395/train_and_evaluate/2 (pid 4155)] Epoch 1/10: loss=0.2789
+2026-05-19 17:05:24.393 [1779210224126395/train_and_evaluate/2 (pid 4155)] Epoch 2/10: loss=0.1349
+2026-05-19 17:06:09.919 [1779210224126395/train_and_evaluate/2 (pid 4155)] Epoch 3/10: loss=0.1090
+2026-05-19 17:06:55.666 [1779210224126395/train_and_evaluate/2 (pid 4155)] Epoch 4/10: loss=0.0907
+2026-05-19 17:07:41.597 [1779210224126395/train_and_evaluate/2 (pid 4155)] Epoch 5/10: loss=0.0833
+2026-05-19 17:08:27.632 [1779210224126395/train_and_evaluate/2 (pid 4155)] Epoch 6/10: loss=0.0763
+2026-05-19 17:08:44.652 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 17:08:44.652 No tasks are waiting in the queue.
+2026-05-19 17:08:44.652 end step has not started
+2026-05-19 17:09:15.195 [1779210224126395/train_and_evaluate/2 (pid 4155)] Epoch 7/10: loss=0.0702
+2026-05-19 17:10:03.129 [1779210224126395/train_and_evaluate/2 (pid 4155)] Epoch 8/10: loss=0.0606
+2026-05-19 17:10:49.948 [1779210224126395/train_and_evaluate/2 (pid 4155)] Epoch 9/10: loss=0.0613
+2026-05-19 17:11:36.439 [1779210224126395/train_and_evaluate/2 (pid 4155)] Epoch 10/10: loss=0.0562
+2026-05-19 17:11:41.407 [1779210224126395/train_and_evaluate/2 (pid 4155)] 
+2026-05-19 17:11:43.166 [1779210224126395/train_and_evaluate/2 (pid 4155)] Accuracy: 0.9825
+2026-05-19 17:11:43.166 [1779210224126395/train_and_evaluate/2 (pid 4155)] Train time: 461.9s
+2026-05-19 17:11:43.166 [1779210224126395/train_and_evaluate/2 (pid 4155)] Eval time: 5.0s
+2026-05-19 17:11:43.166 [1779210224126395/train_and_evaluate/2 (pid 4155)] Pipeline time: 476.1s
+2026-05-19 17:11:43.168 [1779210224126395/train_and_evaluate/2 (pid 4155)] Task finished successfully.
+2026-05-19 17:11:43.173 [1779210224126395/end/3 (pid 4165)] Task is starting.
+2026-05-19 17:11:43.928 [1779210224126395/end/3 (pid 4165)] 
+2026-05-19 17:11:43.929 [1779210224126395/end/3 (pid 4165)] ==================================================
+2026-05-19 17:11:43.929 [1779210224126395/end/3 (pid 4165)] FINAL RESULT
+2026-05-19 17:11:43.929 [1779210224126395/end/3 (pid 4165)] Model: DeepNN
+2026-05-19 17:11:43.929 [1779210224126395/end/3 (pid 4165)] Accuracy: 0.9825
+2026-05-19 17:11:43.929 [1779210224126395/end/3 (pid 4165)] Train time: 461.9s
+2026-05-19 17:11:43.929 [1779210224126395/end/3 (pid 4165)] Eval time: 5.0s
+2026-05-19 17:11:43.930 [1779210224126395/end/3 (pid 4165)] Pipeline time: 476.1s
+2026-05-19 17:11:43.931 [1779210224126395/end/3 (pid 4165)] Config: lr=0.001, batch=64, epochs=10, optimizer=Adam
+2026-05-19 17:11:44.157 [1779210224126395/end/3 (pid 4165)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 17:11:44.157 [1779210224126395/end/3 (pid 4165)] ==================================================
+2026-05-19 17:11:44.158 [1779210224126395/end/3 (pid 4165)] Task finished successfully.
+2026-05-19 17:11:44.159 Done!
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 17:11:45.160 Workflow starting (run-id 1779210705158099):
+2026-05-19 17:11:45.185 [1779210705158099/start/1 (pid 4180)] Task is starting.
+2026-05-19 17:11:46.190 [1779210705158099/start/1 (pid 4180)] 
+2026-05-19 17:11:46.190 [1779210705158099/start/1 (pid 4180)] ==================================================
+2026-05-19 17:11:46.191 [1779210705158099/start/1 (pid 4180)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 17:11:46.191 [1779210705158099/start/1 (pid 4180)] Model: DeepNN
+2026-05-19 17:11:46.415 [1779210705158099/start/1 (pid 4180)] Config: lr=0.001, batch=64, epochs=10
+2026-05-19 17:11:46.415 [1779210705158099/start/1 (pid 4180)] Optimizer: Adam
+2026-05-19 17:11:46.416 [1779210705158099/start/1 (pid 4180)] ==================================================
+2026-05-19 17:11:46.417 [1779210705158099/start/1 (pid 4180)] Task finished successfully.
+2026-05-19 17:11:46.423 [1779210705158099/train_and_evaluate/2 (pid 4187)] Task is starting.
+2026-05-19 17:11:53.680 [1779210705158099/train_and_evaluate/2 (pid 4187)] Data: 60000 train, 10000 test
+2026-05-19 17:11:53.687 [1779210705158099/train_and_evaluate/2 (pid 4187)] Training DeepNN...
+2026-05-19 17:12:37.838 [1779210705158099/train_and_evaluate/2 (pid 4187)] Epoch 1/10: loss=0.2848
+2026-05-19 17:13:23.893 [1779210705158099/train_and_evaluate/2 (pid 4187)] Epoch 2/10: loss=0.1383
+2026-05-19 17:14:09.841 [1779210705158099/train_and_evaluate/2 (pid 4187)] Epoch 3/10: loss=0.1104
+2026-05-19 17:14:55.671 [1779210705158099/train_and_evaluate/2 (pid 4187)] Epoch 4/10: loss=0.0947
+2026-05-19 17:15:41.607 [1779210705158099/train_and_evaluate/2 (pid 4187)] Epoch 5/10: loss=0.0829
+2026-05-19 17:16:27.205 [1779210705158099/train_and_evaluate/2 (pid 4187)] Epoch 6/10: loss=0.0748
+2026-05-19 17:16:45.350 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 17:16:45.351 No tasks are waiting in the queue.
+2026-05-19 17:16:45.351 end step has not started
+2026-05-19 17:17:13.590 [1779210705158099/train_and_evaluate/2 (pid 4187)] Epoch 7/10: loss=0.0692
+2026-05-19 17:17:59.338 [1779210705158099/train_and_evaluate/2 (pid 4187)] Epoch 8/10: loss=0.0623
+2026-05-19 17:18:45.905 [1779210705158099/train_and_evaluate/2 (pid 4187)] Epoch 9/10: loss=0.0567
+2026-05-19 17:19:32.834 [1779210705158099/train_and_evaluate/2 (pid 4187)] Epoch 10/10: loss=0.0567
+2026-05-19 17:19:37.677 [1779210705158099/train_and_evaluate/2 (pid 4187)] 
+2026-05-19 17:19:39.448 [1779210705158099/train_and_evaluate/2 (pid 4187)] Accuracy: 0.9803
+2026-05-19 17:19:39.448 [1779210705158099/train_and_evaluate/2 (pid 4187)] Train time: 459.1s
+2026-05-19 17:19:39.449 [1779210705158099/train_and_evaluate/2 (pid 4187)] Eval time: 4.8s
+2026-05-19 17:19:39.449 [1779210705158099/train_and_evaluate/2 (pid 4187)] Pipeline time: 471.5s
+2026-05-19 17:19:39.450 [1779210705158099/train_and_evaluate/2 (pid 4187)] Task finished successfully.
+2026-05-19 17:19:39.583 [1779210705158099/end/3 (pid 4208)] Task is starting.
+2026-05-19 17:19:40.351 [1779210705158099/end/3 (pid 4208)] 
+2026-05-19 17:19:40.352 [1779210705158099/end/3 (pid 4208)] ==================================================
+2026-05-19 17:19:40.353 [1779210705158099/end/3 (pid 4208)] FINAL RESULT
+2026-05-19 17:19:40.354 [1779210705158099/end/3 (pid 4208)] Model: DeepNN
+2026-05-19 17:19:40.455 [1779210705158099/end/3 (pid 4208)] Accuracy: 0.9803
+2026-05-19 17:19:40.579 [1779210705158099/end/3 (pid 4208)] Train time: 459.1s
+2026-05-19 17:19:40.580 [1779210705158099/end/3 (pid 4208)] Eval time: 4.8s
+2026-05-19 17:19:40.580 [1779210705158099/end/3 (pid 4208)] Pipeline time: 471.5s
+2026-05-19 17:19:40.580 [1779210705158099/end/3 (pid 4208)] Config: lr=0.001, batch=64, epochs=10, optimizer=Adam
+2026-05-19 17:19:40.580 [1779210705158099/end/3 (pid 4208)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 17:19:40.580 [1779210705158099/end/3 (pid 4208)] ==================================================
+2026-05-19 17:19:40.582 [1779210705158099/end/3 (pid 4208)] Task finished successfully.
+2026-05-19 17:19:40.583 Done!
+
+>>> CNN x 3 runs (TC7)
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 17:19:41.582 Workflow starting (run-id 1779211181453867):
+2026-05-19 17:19:41.608 [1779211181453867/start/1 (pid 4223)] Task is starting.
+2026-05-19 17:19:42.602 [1779211181453867/start/1 (pid 4223)] 
+2026-05-19 17:19:42.603 [1779211181453867/start/1 (pid 4223)] ==================================================
+2026-05-19 17:19:42.604 [1779211181453867/start/1 (pid 4223)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 17:19:42.605 [1779211181453867/start/1 (pid 4223)] Model: CNN
+2026-05-19 17:19:42.703 [1779211181453867/start/1 (pid 4223)] Config: lr=0.001, batch=64, epochs=10
+2026-05-19 17:19:42.703 [1779211181453867/start/1 (pid 4223)] Optimizer: Adam
+2026-05-19 17:19:42.704 [1779211181453867/start/1 (pid 4223)] ==================================================
+2026-05-19 17:19:42.705 [1779211181453867/start/1 (pid 4223)] Task finished successfully.
+2026-05-19 17:19:42.838 [1779211181453867/train_and_evaluate/2 (pid 4230)] Task is starting.
+2026-05-19 17:19:50.176 [1779211181453867/train_and_evaluate/2 (pid 4230)] Data: 60000 train, 10000 test
+2026-05-19 17:19:50.305 [1779211181453867/train_and_evaluate/2 (pid 4230)] Training CNN...
+2026-05-19 17:23:00.074 [1779211181453867/train_and_evaluate/2 (pid 4230)] Epoch 1/10: loss=0.1451
+2026-05-19 17:24:42.321 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 17:24:42.322 No tasks are waiting in the queue.
+2026-05-19 17:24:42.322 end step has not started
+2026-05-19 17:26:12.584 [1779211181453867/train_and_evaluate/2 (pid 4230)] Epoch 2/10: loss=0.0630
+2026-05-19 17:29:20.530 [1779211181453867/train_and_evaluate/2 (pid 4230)] Epoch 3/10: loss=0.0477
+2026-05-19 17:29:42.556 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 17:29:42.556 No tasks are waiting in the queue.
+2026-05-19 17:29:42.556 end step has not started
+2026-05-19 17:32:29.253 [1779211181453867/train_and_evaluate/2 (pid 4230)] Epoch 4/10: loss=0.0414
+2026-05-19 17:34:43.531 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 17:34:43.532 No tasks are waiting in the queue.
+2026-05-19 17:34:43.532 end step has not started
+2026-05-19 17:35:35.483 [1779211181453867/train_and_evaluate/2 (pid 4230)] Epoch 5/10: loss=0.0322
+2026-05-19 17:38:41.225 [1779211181453867/train_and_evaluate/2 (pid 4230)] Epoch 6/10: loss=0.0299
+2026-05-19 17:39:44.298 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 17:39:44.298 No tasks are waiting in the queue.
+2026-05-19 17:39:44.298 end step has not started
+2026-05-19 17:41:52.536 [1779211181453867/train_and_evaluate/2 (pid 4230)] Epoch 7/10: loss=0.0253
+2026-05-19 17:44:44.983 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 17:44:44.983 No tasks are waiting in the queue.
+2026-05-19 17:44:44.983 end step has not started
+2026-05-19 17:44:58.774 [1779211181453867/train_and_evaluate/2 (pid 4230)] Epoch 8/10: loss=0.0214
+2026-05-19 17:48:03.520 [1779211181453867/train_and_evaluate/2 (pid 4230)] Epoch 9/10: loss=0.0210
+2026-05-19 17:49:45.763 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 17:49:45.764 No tasks are waiting in the queue.
+2026-05-19 17:49:45.764 end step has not started
+2026-05-19 17:51:10.812 [1779211181453867/train_and_evaluate/2 (pid 4230)] Epoch 10/10: loss=0.0192
+2026-05-19 17:51:25.558 [1779211181453867/train_and_evaluate/2 (pid 4230)] 
+2026-05-19 17:51:28.513 [1779211181453867/train_and_evaluate/2 (pid 4230)] Accuracy: 0.9919
+2026-05-19 17:51:28.513 [1779211181453867/train_and_evaluate/2 (pid 4230)] Train time: 1880.5s
+2026-05-19 17:51:28.513 [1779211181453867/train_and_evaluate/2 (pid 4230)] Eval time: 14.7s
+2026-05-19 17:51:28.513 [1779211181453867/train_and_evaluate/2 (pid 4230)] Pipeline time: 1903.0s
+2026-05-19 17:51:28.521 [1779211181453867/train_and_evaluate/2 (pid 4230)] Task finished successfully.
+2026-05-19 17:51:28.536 [1779211181453867/end/3 (pid 4269)] Task is starting.
+2026-05-19 17:51:29.485 [1779211181453867/end/3 (pid 4269)] 
+2026-05-19 17:51:29.486 [1779211181453867/end/3 (pid 4269)] ==================================================
+2026-05-19 17:51:29.486 [1779211181453867/end/3 (pid 4269)] FINAL RESULT
+2026-05-19 17:51:29.486 [1779211181453867/end/3 (pid 4269)] Model: CNN
+2026-05-19 17:51:29.486 [1779211181453867/end/3 (pid 4269)] Accuracy: 0.9919
+2026-05-19 17:51:29.487 [1779211181453867/end/3 (pid 4269)] Train time: 1880.5s
+2026-05-19 17:51:29.487 [1779211181453867/end/3 (pid 4269)] Eval time: 14.7s
+2026-05-19 17:51:29.488 [1779211181453867/end/3 (pid 4269)] Pipeline time: 1903.0s
+2026-05-19 17:51:29.488 [1779211181453867/end/3 (pid 4269)] Config: lr=0.001, batch=64, epochs=10, optimizer=Adam
+2026-05-19 17:51:29.591 [1779211181453867/end/3 (pid 4269)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 17:51:29.592 [1779211181453867/end/3 (pid 4269)] ==================================================
+2026-05-19 17:51:29.593 [1779211181453867/end/3 (pid 4269)] Task finished successfully.
+2026-05-19 17:51:29.721 Done!
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 17:51:30.786 Workflow starting (run-id 1779213090784357):
+2026-05-19 17:51:30.815 [1779213090784357/start/1 (pid 4284)] Task is starting.
+2026-05-19 17:51:31.831 [1779213090784357/start/1 (pid 4284)] 
+2026-05-19 17:51:31.832 [1779213090784357/start/1 (pid 4284)] ==================================================
+2026-05-19 17:51:31.832 [1779213090784357/start/1 (pid 4284)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 17:51:31.833 [1779213090784357/start/1 (pid 4284)] Model: CNN
+2026-05-19 17:51:31.834 [1779213090784357/start/1 (pid 4284)] Config: lr=0.001, batch=64, epochs=10
+2026-05-19 17:51:32.064 [1779213090784357/start/1 (pid 4284)] Optimizer: Adam
+2026-05-19 17:51:32.064 [1779213090784357/start/1 (pid 4284)] ==================================================
+2026-05-19 17:51:32.065 [1779213090784357/start/1 (pid 4284)] Task finished successfully.
+2026-05-19 17:51:32.072 [1779213090784357/train_and_evaluate/2 (pid 4291)] Task is starting.
+2026-05-19 17:51:40.510 [1779213090784357/train_and_evaluate/2 (pid 4291)] Data: 60000 train, 10000 test
+2026-05-19 17:51:40.519 [1779213090784357/train_and_evaluate/2 (pid 4291)] Training CNN...
+2026-05-19 17:55:10.792 [1779213090784357/train_and_evaluate/2 (pid 4291)] Epoch 1/10: loss=0.1507
+2026-05-19 17:56:31.011 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 17:56:31.011 No tasks are waiting in the queue.
+2026-05-19 17:56:31.012 end step has not started
+2026-05-19 17:58:44.981 [1779213090784357/train_and_evaluate/2 (pid 4291)] Epoch 2/10: loss=0.0642
+2026-05-19 18:01:31.300 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:01:31.301 No tasks are waiting in the queue.
+2026-05-19 18:01:31.301 end step has not started
+2026-05-19 18:02:21.982 [1779213090784357/train_and_evaluate/2 (pid 4291)] Epoch 3/10: loss=0.0493
+2026-05-19 18:05:59.475 [1779213090784357/train_and_evaluate/2 (pid 4291)] Epoch 4/10: loss=0.0428
+2026-05-19 18:06:31.512 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:06:31.512 No tasks are waiting in the queue.
+2026-05-19 18:06:31.512 end step has not started
+2026-05-19 18:09:31.570 [1779213090784357/train_and_evaluate/2 (pid 4291)] Epoch 5/10: loss=0.0357
+2026-05-19 18:11:31.835 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:11:31.836 No tasks are waiting in the queue.
+2026-05-19 18:11:31.836 end step has not started
+2026-05-19 18:13:07.265 [1779213090784357/train_and_evaluate/2 (pid 4291)] Epoch 6/10: loss=0.0306
+2026-05-19 18:16:32.751 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:16:32.751 No tasks are waiting in the queue.
+2026-05-19 18:16:32.751 end step has not started
+2026-05-19 18:16:42.327 [1779213090784357/train_and_evaluate/2 (pid 4291)] Epoch 7/10: loss=0.0273
+2026-05-19 18:20:19.729 [1779213090784357/train_and_evaluate/2 (pid 4291)] Epoch 8/10: loss=0.0217
+2026-05-19 18:21:32.815 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:21:32.815 No tasks are waiting in the queue.
+2026-05-19 18:21:32.815 end step has not started
+2026-05-19 18:23:55.790 [1779213090784357/train_and_evaluate/2 (pid 4291)] Epoch 9/10: loss=0.0214
+2026-05-19 18:26:33.093 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:26:33.093 No tasks are waiting in the queue.
+2026-05-19 18:26:33.094 end step has not started
+2026-05-19 18:27:27.503 [1779213090784357/train_and_evaluate/2 (pid 4291)] Epoch 10/10: loss=0.0184
+2026-05-19 18:27:41.746 [1779213090784357/train_and_evaluate/2 (pid 4291)] 
+2026-05-19 18:27:44.267 [1779213090784357/train_and_evaluate/2 (pid 4291)] Accuracy: 0.9919
+2026-05-19 18:27:44.267 [1779213090784357/train_and_evaluate/2 (pid 4291)] Train time: 2147.0s
+2026-05-19 18:27:44.267 [1779213090784357/train_and_evaluate/2 (pid 4291)] Eval time: 14.2s
+2026-05-19 18:27:44.267 [1779213090784357/train_and_evaluate/2 (pid 4291)] Pipeline time: 2169.9s
+2026-05-19 18:27:44.271 [1779213090784357/train_and_evaluate/2 (pid 4291)] Task finished successfully.
+2026-05-19 18:27:44.281 [1779213090784357/end/3 (pid 4338)] Task is starting.
+2026-05-19 18:27:45.282 [1779213090784357/end/3 (pid 4338)] 
+2026-05-19 18:27:45.283 [1779213090784357/end/3 (pid 4338)] ==================================================
+2026-05-19 18:27:45.283 [1779213090784357/end/3 (pid 4338)] FINAL RESULT
+2026-05-19 18:27:45.283 [1779213090784357/end/3 (pid 4338)] Model: CNN
+2026-05-19 18:27:45.283 [1779213090784357/end/3 (pid 4338)] Accuracy: 0.9919
+2026-05-19 18:27:45.283 [1779213090784357/end/3 (pid 4338)] Train time: 2147.0s
+2026-05-19 18:27:45.284 [1779213090784357/end/3 (pid 4338)] Eval time: 14.2s
+2026-05-19 18:27:45.285 [1779213090784357/end/3 (pid 4338)] Pipeline time: 2169.9s
+2026-05-19 18:27:45.286 [1779213090784357/end/3 (pid 4338)] Config: lr=0.001, batch=64, epochs=10, optimizer=Adam
+2026-05-19 18:27:45.514 [1779213090784357/end/3 (pid 4338)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 18:27:45.514 [1779213090784357/end/3 (pid 4338)] ==================================================
+2026-05-19 18:27:45.515 [1779213090784357/end/3 (pid 4338)] Task finished successfully.
+2026-05-19 18:27:45.517 Done!
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 18:27:46.548 Workflow starting (run-id 1779215266546352):
+2026-05-19 18:27:46.575 [1779215266546352/start/1 (pid 4353)] Task is starting.
+2026-05-19 18:27:47.742 [1779215266546352/start/1 (pid 4353)] 
+2026-05-19 18:27:47.744 [1779215266546352/start/1 (pid 4353)] ==================================================
+2026-05-19 18:27:47.745 [1779215266546352/start/1 (pid 4353)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 18:27:47.746 [1779215266546352/start/1 (pid 4353)] Model: CNN
+2026-05-19 18:27:47.839 [1779215266546352/start/1 (pid 4353)] Config: lr=0.001, batch=64, epochs=10
+2026-05-19 18:27:47.839 [1779215266546352/start/1 (pid 4353)] Optimizer: Adam
+2026-05-19 18:27:47.840 [1779215266546352/start/1 (pid 4353)] ==================================================
+2026-05-19 18:27:47.841 [1779215266546352/start/1 (pid 4353)] Task finished successfully.
+2026-05-19 18:27:47.974 [1779215266546352/train_and_evaluate/2 (pid 4360)] Task is starting.
+2026-05-19 18:27:56.731 [1779215266546352/train_and_evaluate/2 (pid 4360)] Data: 60000 train, 10000 test
+2026-05-19 18:27:56.740 [1779215266546352/train_and_evaluate/2 (pid 4360)] Training CNN...
+2026-05-19 18:31:25.973 [1779215266546352/train_and_evaluate/2 (pid 4360)] Epoch 1/10: loss=0.1707
+2026-05-19 18:32:47.068 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:32:47.068 No tasks are waiting in the queue.
+2026-05-19 18:32:47.069 end step has not started
+2026-05-19 18:35:01.083 [1779215266546352/train_and_evaluate/2 (pid 4360)] Epoch 2/10: loss=0.0713
+2026-05-19 18:37:47.522 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:37:47.523 No tasks are waiting in the queue.
+2026-05-19 18:37:47.523 end step has not started
+2026-05-19 18:38:35.755 [1779215266546352/train_and_evaluate/2 (pid 4360)] Epoch 3/10: loss=0.0555
+2026-05-19 18:42:08.792 [1779215266546352/train_and_evaluate/2 (pid 4360)] Epoch 4/10: loss=0.0484
+2026-05-19 18:42:47.838 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:42:47.839 No tasks are waiting in the queue.
+2026-05-19 18:42:47.839 end step has not started
+2026-05-19 18:45:42.992 [1779215266546352/train_and_evaluate/2 (pid 4360)] Epoch 5/10: loss=0.0390
+2026-05-19 18:47:48.261 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:47:48.262 No tasks are waiting in the queue.
+2026-05-19 18:47:48.262 end step has not started
+2026-05-19 18:49:20.825 [1779215266546352/train_and_evaluate/2 (pid 4360)] Epoch 6/10: loss=0.0349
+2026-05-19 18:52:48.312 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:52:48.313 No tasks are waiting in the queue.
+2026-05-19 18:52:48.313 end step has not started
+2026-05-19 18:52:56.721 [1779215266546352/train_and_evaluate/2 (pid 4360)] Epoch 7/10: loss=0.0311
+2026-05-19 18:56:36.302 [1779215266546352/train_and_evaluate/2 (pid 4360)] Epoch 8/10: loss=0.0266
+2026-05-19 18:57:48.509 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 18:57:48.510 No tasks are waiting in the queue.
+2026-05-19 18:57:48.510 end step has not started
+2026-05-19 19:00:10.723 [1779215266546352/train_and_evaluate/2 (pid 4360)] Epoch 9/10: loss=0.0230
+2026-05-19 19:02:49.031 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 19:02:49.031 No tasks are waiting in the queue.
+2026-05-19 19:02:49.031 end step has not started
+2026-05-19 19:03:42.575 [1779215266546352/train_and_evaluate/2 (pid 4360)] Epoch 10/10: loss=0.0221
+2026-05-19 19:03:57.272 [1779215266546352/train_and_evaluate/2 (pid 4360)] 
+2026-05-19 19:04:00.025 [1779215266546352/train_and_evaluate/2 (pid 4360)] Accuracy: 0.9920
+2026-05-19 19:04:00.026 [1779215266546352/train_and_evaluate/2 (pid 4360)] Train time: 2145.8s
+2026-05-19 19:04:00.026 [1779215266546352/train_and_evaluate/2 (pid 4360)] Eval time: 14.7s
+2026-05-19 19:04:00.026 [1779215266546352/train_and_evaluate/2 (pid 4360)] Pipeline time: 2169.5s
+2026-05-19 19:04:00.037 [1779215266546352/train_and_evaluate/2 (pid 4360)] Task finished successfully.
+2026-05-19 19:04:00.056 [1779215266546352/end/3 (pid 4399)] Task is starting.
+2026-05-19 19:04:01.061 [1779215266546352/end/3 (pid 4399)] 
+2026-05-19 19:04:01.061 [1779215266546352/end/3 (pid 4399)] ==================================================
+2026-05-19 19:04:01.062 [1779215266546352/end/3 (pid 4399)] FINAL RESULT
+2026-05-19 19:04:01.062 [1779215266546352/end/3 (pid 4399)] Model: CNN
+2026-05-19 19:04:01.062 [1779215266546352/end/3 (pid 4399)] Accuracy: 0.9920
+2026-05-19 19:04:01.063 [1779215266546352/end/3 (pid 4399)] Train time: 2145.8s
+2026-05-19 19:04:01.064 [1779215266546352/end/3 (pid 4399)] Eval time: 14.7s
+2026-05-19 19:04:01.064 [1779215266546352/end/3 (pid 4399)] Pipeline time: 2169.5s
+2026-05-19 19:04:01.065 [1779215266546352/end/3 (pid 4399)] Config: lr=0.001, batch=64, epochs=10, optimizer=Adam
+2026-05-19 19:04:01.301 [1779215266546352/end/3 (pid 4399)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 19:04:01.301 [1779215266546352/end/3 (pid 4399)] ==================================================
+2026-05-19 19:04:01.303 [1779215266546352/end/3 (pid 4399)] Task finished successfully.
+2026-05-19 19:04:01.305 Done!
+
+>>> TC2 Config Sweep (3 configs)
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 19:04:02.559 Workflow starting (run-id 1779217442555889):
+2026-05-19 19:04:02.589 [1779217442555889/start/1 (pid 4414)] Task is starting.
+2026-05-19 19:04:03.754 [1779217442555889/start/1 (pid 4414)] 
+2026-05-19 19:04:03.754 [1779217442555889/start/1 (pid 4414)] ==================================================
+2026-05-19 19:04:03.755 [1779217442555889/start/1 (pid 4414)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 19:04:03.755 [1779217442555889/start/1 (pid 4414)] Model: SimpleNN
+2026-05-19 19:04:03.990 [1779217442555889/start/1 (pid 4414)] Config: lr=0.001, batch=32, epochs=10
+2026-05-19 19:04:03.990 [1779217442555889/start/1 (pid 4414)] Optimizer: Adam
+2026-05-19 19:04:03.990 [1779217442555889/start/1 (pid 4414)] ==================================================
+2026-05-19 19:04:03.991 [1779217442555889/start/1 (pid 4414)] Task finished successfully.
+2026-05-19 19:04:03.999 [1779217442555889/train_and_evaluate/2 (pid 4421)] Task is starting.
+2026-05-19 19:04:13.060 [1779217442555889/train_and_evaluate/2 (pid 4421)] Data: 60000 train, 10000 test
+2026-05-19 19:04:13.063 [1779217442555889/train_and_evaluate/2 (pid 4421)] Training SimpleNN...
+2026-05-19 19:04:50.082 [1779217442555889/train_and_evaluate/2 (pid 4421)] Epoch 1/10: loss=0.2269
+2026-05-19 19:05:26.789 [1779217442555889/train_and_evaluate/2 (pid 4421)] Epoch 2/10: loss=0.1017
+2026-05-19 19:06:04.743 [1779217442555889/train_and_evaluate/2 (pid 4421)] Epoch 3/10: loss=0.0734
+2026-05-19 19:06:44.551 [1779217442555889/train_and_evaluate/2 (pid 4421)] Epoch 4/10: loss=0.0583
+2026-05-19 19:07:21.277 [1779217442555889/train_and_evaluate/2 (pid 4421)] Epoch 5/10: loss=0.0466
+2026-05-19 19:07:57.722 [1779217442555889/train_and_evaluate/2 (pid 4421)] Epoch 6/10: loss=0.0383
+2026-05-19 19:08:35.031 [1779217442555889/train_and_evaluate/2 (pid 4421)] Epoch 7/10: loss=0.0330
+2026-05-19 19:09:03.064 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 19:09:03.065 No tasks are waiting in the queue.
+2026-05-19 19:09:03.065 end step has not started
+2026-05-19 19:09:14.492 [1779217442555889/train_and_evaluate/2 (pid 4421)] Epoch 8/10: loss=0.0274
+2026-05-19 19:09:54.000 [1779217442555889/train_and_evaluate/2 (pid 4421)] Epoch 9/10: loss=0.0252
+2026-05-19 19:10:33.526 [1779217442555889/train_and_evaluate/2 (pid 4421)] Epoch 10/10: loss=0.0222
+2026-05-19 19:10:38.727 [1779217442555889/train_and_evaluate/2 (pid 4421)] 
+2026-05-19 19:10:40.530 [1779217442555889/train_and_evaluate/2 (pid 4421)] Accuracy: 0.9756
+2026-05-19 19:10:40.530 [1779217442555889/train_and_evaluate/2 (pid 4421)] Train time: 380.5s
+2026-05-19 19:10:40.530 [1779217442555889/train_and_evaluate/2 (pid 4421)] Eval time: 5.2s
+2026-05-19 19:10:40.530 [1779217442555889/train_and_evaluate/2 (pid 4421)] Pipeline time: 395.0s
+2026-05-19 19:10:40.532 [1779217442555889/train_and_evaluate/2 (pid 4421)] Task finished successfully.
+2026-05-19 19:10:40.539 [1779217442555889/end/3 (pid 4439)] Task is starting.
+2026-05-19 19:10:41.314 [1779217442555889/end/3 (pid 4439)] 
+2026-05-19 19:10:41.315 [1779217442555889/end/3 (pid 4439)] ==================================================
+2026-05-19 19:10:41.315 [1779217442555889/end/3 (pid 4439)] FINAL RESULT
+2026-05-19 19:10:41.315 [1779217442555889/end/3 (pid 4439)] Model: SimpleNN
+2026-05-19 19:10:41.315 [1779217442555889/end/3 (pid 4439)] Accuracy: 0.9756
+2026-05-19 19:10:41.315 [1779217442555889/end/3 (pid 4439)] Train time: 380.5s
+2026-05-19 19:10:41.315 [1779217442555889/end/3 (pid 4439)] Eval time: 5.2s
+2026-05-19 19:10:41.316 [1779217442555889/end/3 (pid 4439)] Pipeline time: 395.0s
+2026-05-19 19:10:41.317 [1779217442555889/end/3 (pid 4439)] Config: lr=0.001, batch=32, epochs=10, optimizer=Adam
+2026-05-19 19:10:41.546 [1779217442555889/end/3 (pid 4439)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 19:10:41.546 [1779217442555889/end/3 (pid 4439)] ==================================================
+2026-05-19 19:10:41.548 [1779217442555889/end/3 (pid 4439)] Task finished successfully.
+2026-05-19 19:10:41.549 Done!
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 19:10:42.582 Workflow starting (run-id 1779217842578814):
+2026-05-19 19:10:42.743 [1779217842578814/start/1 (pid 4454)] Task is starting.
+2026-05-19 19:10:43.784 [1779217842578814/start/1 (pid 4454)] 
+2026-05-19 19:10:43.784 [1779217842578814/start/1 (pid 4454)] ==================================================
+2026-05-19 19:10:43.785 [1779217842578814/start/1 (pid 4454)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 19:10:43.785 [1779217842578814/start/1 (pid 4454)] Model: SimpleNN
+2026-05-19 19:10:44.010 [1779217842578814/start/1 (pid 4454)] Config: lr=0.01, batch=64, epochs=10
+2026-05-19 19:10:44.010 [1779217842578814/start/1 (pid 4454)] Optimizer: Adam
+2026-05-19 19:10:44.010 [1779217842578814/start/1 (pid 4454)] ==================================================
+2026-05-19 19:10:44.012 [1779217842578814/start/1 (pid 4454)] Task finished successfully.
+2026-05-19 19:10:44.019 [1779217842578814/train_and_evaluate/2 (pid 4461)] Task is starting.
+2026-05-19 19:10:51.979 [1779217842578814/train_and_evaluate/2 (pid 4461)] Data: 60000 train, 10000 test
+2026-05-19 19:10:51.981 [1779217842578814/train_and_evaluate/2 (pid 4461)] Training SimpleNN...
+2026-05-19 19:11:27.795 [1779217842578814/train_and_evaluate/2 (pid 4461)] Epoch 1/10: loss=0.2814
+2026-05-19 19:12:06.509 [1779217842578814/train_and_evaluate/2 (pid 4461)] Epoch 2/10: loss=0.2121
+2026-05-19 19:12:42.299 [1779217842578814/train_and_evaluate/2 (pid 4461)] Epoch 3/10: loss=0.1891
+2026-05-19 19:13:19.554 [1779217842578814/train_and_evaluate/2 (pid 4461)] Epoch 4/10: loss=0.1849
+2026-05-19 19:13:54.825 [1779217842578814/train_and_evaluate/2 (pid 4461)] Epoch 5/10: loss=0.1715
+2026-05-19 19:14:31.777 [1779217842578814/train_and_evaluate/2 (pid 4461)] Epoch 6/10: loss=0.1697
+2026-05-19 19:15:06.788 [1779217842578814/train_and_evaluate/2 (pid 4461)] Epoch 7/10: loss=0.1665
+2026-05-19 19:15:42.832 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 19:15:42.832 No tasks are waiting in the queue.
+2026-05-19 19:15:42.832 end step has not started
+2026-05-19 19:15:44.275 [1779217842578814/train_and_evaluate/2 (pid 4461)] Epoch 8/10: loss=0.1663
+2026-05-19 19:16:20.813 [1779217842578814/train_and_evaluate/2 (pid 4461)] Epoch 9/10: loss=0.1605
+2026-05-19 19:16:57.756 [1779217842578814/train_and_evaluate/2 (pid 4461)] Epoch 10/10: loss=0.1541
+2026-05-19 19:17:02.525 [1779217842578814/train_and_evaluate/2 (pid 4461)] 
+2026-05-19 19:17:04.472 [1779217842578814/train_and_evaluate/2 (pid 4461)] Accuracy: 0.9525
+2026-05-19 19:17:04.473 [1779217842578814/train_and_evaluate/2 (pid 4461)] Train time: 365.8s
+2026-05-19 19:17:04.473 [1779217842578814/train_and_evaluate/2 (pid 4461)] Eval time: 4.8s
+2026-05-19 19:17:04.473 [1779217842578814/train_and_evaluate/2 (pid 4461)] Pipeline time: 378.7s
+2026-05-19 19:17:04.474 [1779217842578814/train_and_evaluate/2 (pid 4461)] Task finished successfully.
+2026-05-19 19:17:04.481 [1779217842578814/end/3 (pid 4585)] Task is starting.
+2026-05-19 19:17:05.282 [1779217842578814/end/3 (pid 4585)] 
+2026-05-19 19:17:05.282 [1779217842578814/end/3 (pid 4585)] ==================================================
+2026-05-19 19:17:05.283 [1779217842578814/end/3 (pid 4585)] FINAL RESULT
+2026-05-19 19:17:05.283 [1779217842578814/end/3 (pid 4585)] Model: SimpleNN
+2026-05-19 19:17:05.283 [1779217842578814/end/3 (pid 4585)] Accuracy: 0.9525
+2026-05-19 19:17:05.284 [1779217842578814/end/3 (pid 4585)] Train time: 365.8s
+2026-05-19 19:17:05.284 [1779217842578814/end/3 (pid 4585)] Eval time: 4.8s
+2026-05-19 19:17:05.285 [1779217842578814/end/3 (pid 4585)] Pipeline time: 378.7s
+2026-05-19 19:17:05.285 [1779217842578814/end/3 (pid 4585)] Config: lr=0.01, batch=64, epochs=10, optimizer=Adam
+2026-05-19 19:17:05.520 [1779217842578814/end/3 (pid 4585)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 19:17:05.520 [1779217842578814/end/3 (pid 4585)] ==================================================
+2026-05-19 19:17:05.521 [1779217842578814/end/3 (pid 4585)] Task finished successfully.
+2026-05-19 19:17:05.524 Done!
+Metaflow 2.19.29 executing MNISTFlow for user:doanthao0103
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint not found, so extra checks are disabled.
+2026-05-19 19:17:06.753 Workflow starting (run-id 1779218226751229):
+2026-05-19 19:17:06.786 [1779218226751229/start/1 (pid 4600)] Task is starting.
+2026-05-19 19:17:07.842 [1779218226751229/start/1 (pid 4600)] 
+2026-05-19 19:17:07.843 [1779218226751229/start/1 (pid 4600)] ==================================================
+2026-05-19 19:17:07.843 [1779218226751229/start/1 (pid 4600)] UC1 MNIST — Metaflow (GCP VM)
+2026-05-19 19:17:07.843 [1779218226751229/start/1 (pid 4600)] Model: SimpleNN
+2026-05-19 19:17:08.073 [1779218226751229/start/1 (pid 4600)] Config: lr=0.05, batch=128, epochs=10
+2026-05-19 19:17:08.073 [1779218226751229/start/1 (pid 4600)] Optimizer: Adam
+2026-05-19 19:17:08.073 [1779218226751229/start/1 (pid 4600)] ==================================================
+2026-05-19 19:17:08.075 [1779218226751229/start/1 (pid 4600)] Task finished successfully.
+2026-05-19 19:17:08.082 [1779218226751229/train_and_evaluate/2 (pid 4607)] Task is starting.
+2026-05-19 19:17:16.254 [1779218226751229/train_and_evaluate/2 (pid 4607)] Data: 60000 train, 10000 test
+2026-05-19 19:17:16.257 [1779218226751229/train_and_evaluate/2 (pid 4607)] Training SimpleNN...
+2026-05-19 19:17:46.222 [1779218226751229/train_and_evaluate/2 (pid 4607)] Epoch 1/10: loss=0.7515
+2026-05-19 19:18:16.261 [1779218226751229/train_and_evaluate/2 (pid 4607)] Epoch 2/10: loss=0.4366
+2026-05-19 19:18:46.551 [1779218226751229/train_and_evaluate/2 (pid 4607)] Epoch 3/10: loss=0.4529
+2026-05-19 19:19:17.988 [1779218226751229/train_and_evaluate/2 (pid 4607)] Epoch 4/10: loss=0.4605
+2026-05-19 19:19:48.816 [1779218226751229/train_and_evaluate/2 (pid 4607)] Epoch 5/10: loss=0.5230
+2026-05-19 19:20:19.247 [1779218226751229/train_and_evaluate/2 (pid 4607)] Epoch 6/10: loss=0.5219
+2026-05-19 19:20:49.777 [1779218226751229/train_and_evaluate/2 (pid 4607)] Epoch 7/10: loss=0.5854
+2026-05-19 19:21:20.773 [1779218226751229/train_and_evaluate/2 (pid 4607)] Epoch 8/10: loss=0.5300
+2026-05-19 19:21:51.508 [1779218226751229/train_and_evaluate/2 (pid 4607)] Epoch 9/10: loss=0.6120
+2026-05-19 19:22:07.528 1 task is running: train_and_evaluate (1 running; 0 done).
+2026-05-19 19:22:07.528 No tasks are waiting in the queue.
+2026-05-19 19:22:07.529 end step has not started
+2026-05-19 19:22:23.730 [1779218226751229/train_and_evaluate/2 (pid 4607)] Epoch 10/10: loss=0.6332
+2026-05-19 19:22:28.228 [1779218226751229/train_and_evaluate/2 (pid 4607)] 
+2026-05-19 19:22:30.221 [1779218226751229/train_and_evaluate/2 (pid 4607)] Accuracy: 0.8444
+2026-05-19 19:22:30.222 [1779218226751229/train_and_evaluate/2 (pid 4607)] Train time: 307.5s
+2026-05-19 19:22:30.222 [1779218226751229/train_and_evaluate/2 (pid 4607)] Eval time: 4.5s
+2026-05-19 19:22:30.222 [1779218226751229/train_and_evaluate/2 (pid 4607)] Pipeline time: 320.4s
+2026-05-19 19:22:30.225 [1779218226751229/train_and_evaluate/2 (pid 4607)] Task finished successfully.
+2026-05-19 19:22:30.232 [1779218226751229/end/3 (pid 4625)] Task is starting.
+2026-05-19 19:22:31.027 [1779218226751229/end/3 (pid 4625)] 
+2026-05-19 19:22:31.028 [1779218226751229/end/3 (pid 4625)] ==================================================
+2026-05-19 19:22:31.028 [1779218226751229/end/3 (pid 4625)] FINAL RESULT
+2026-05-19 19:22:31.028 [1779218226751229/end/3 (pid 4625)] Model: SimpleNN
+2026-05-19 19:22:31.029 [1779218226751229/end/3 (pid 4625)] Accuracy: 0.8444
+2026-05-19 19:22:31.030 [1779218226751229/end/3 (pid 4625)] Train time: 307.5s
+2026-05-19 19:22:31.030 [1779218226751229/end/3 (pid 4625)] Eval time: 4.5s
+2026-05-19 19:22:31.265 [1779218226751229/end/3 (pid 4625)] Pipeline time: 320.4s
+2026-05-19 19:22:31.265 [1779218226751229/end/3 (pid 4625)] Config: lr=0.05, batch=128, epochs=10, optimizer=Adam
+2026-05-19 19:22:31.265 [1779218226751229/end/3 (pid 4625)] Platform: Metaflow Local Mode (GCP VM)
+2026-05-19 19:22:31.266 [1779218226751229/end/3 (pid 4625)] ==================================================
+2026-05-19 19:22:31.267 [1779218226751229/end/3 (pid 4625)] Task finished successfully.
+2026-05-19 19:22:31.269 Done!
+
+>>> Kết quả:
+
+============================================================
+  UC1 MNIST — Metaflow Results
+============================================================
+  Lỗi: Flow('MNISTFlow') does not exist
+  Chưa có flow MNISTFlow. Chạy UC1 trước.
+
+============================================================
+  UC2 PhoBERT — Metaflow Results
+============================================================
+  Lỗi: Flow('PhoBERTSentimentFlow') does not exist
+  Chưa có flow PhoBERTSentimentFlow. Chạy UC2 trước.
+
+==========================================
+ ✅ UC1 Metaflow HOÀN THÀNH!
+==========================================
