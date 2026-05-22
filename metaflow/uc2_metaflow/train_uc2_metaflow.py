@@ -15,7 +15,7 @@ os.environ["METAFLOW_DEFAULT_METADATA"] = "local"
 from metaflow import FlowSpec, step, Parameter
 import time
 
-from shared.config_phobert import HPARAMS, MAX_LENGTH
+from shared.config_phobert import HPARAMS, MAX_LENGTH, SEED
 
 
 class PhoBERTSentimentFlow(FlowSpec):
@@ -31,6 +31,8 @@ class PhoBERTSentimentFlow(FlowSpec):
                            help='Max token length for PhoBERT')
     grad_accum = Parameter('grad_accum', default=HPARAMS["gradient_accumulation_steps"], type=int,
                            help='Gradient accumulation steps')
+    training_seed = Parameter('training_seed', default=SEED, type=int,
+                              help='Seed for HF Trainer (different per baseline run for TC7 variance)')
 
     @step
     def start(self):
@@ -41,6 +43,7 @@ class PhoBERTSentimentFlow(FlowSpec):
               f"grad_accum={self.grad_accum}, epochs={self.epochs}")
         print(f"  Effective batch size: {self.batch_size * self.grad_accum}")
         print(f"  Optimizer: AdamW")
+        print(f"  Training seed: {self.training_seed}")
         print(f"{'='*50}")
         self.next(self.load_and_train)
 
@@ -141,6 +144,8 @@ class PhoBERTSentimentFlow(FlowSpec):
             report_to="none",
             save_total_limit=1,
             dataloader_num_workers=0,
+            seed=self.training_seed,
+            data_seed=self.training_seed,
         )
 
         trainer = Trainer(

@@ -97,7 +97,7 @@ def compute_metrics(eval_pred):
     }
 
 
-def train_one_run(tokenized, tokenizer, lr, batch_size, epochs, run_name):
+def train_one_run(tokenized, tokenizer, lr, batch_size, epochs, run_name, training_seed=SEED):
     """Fine-tune PhoBERT 1 lan, log toan bo len MLflow."""
 
     grad_accum = HPARAMS["gradient_accumulation_steps"]
@@ -110,7 +110,8 @@ def train_one_run(tokenized, tokenizer, lr, batch_size, epochs, run_name):
         mlflow.log_param("model", PHOBERT_MODEL_NAME)
         mlflow.log_param("dataset", DATASET_NAME)
         mlflow.log_param("sample_size", SAMPLE_SIZE)
-        mlflow.log_param("seed", SEED)
+        mlflow.log_param("sampling_seed", SEED)
+        mlflow.log_param("training_seed", training_seed)
         mlflow.log_param("num_labels", NUM_LABELS)
         mlflow.log_param("max_length", MAX_LENGTH)
         mlflow.log_param("lr", lr)
@@ -149,6 +150,8 @@ def train_one_run(tokenized, tokenizer, lr, batch_size, epochs, run_name):
             report_to="none",
             save_total_limit=1,
             dataloader_num_workers=0,
+            seed=training_seed,
+            data_seed=training_seed,
         )
 
         # ---- Trainer ----
@@ -200,7 +203,8 @@ def main(mode="all"):
         print(f" PHAN 1: Chay lap {NUM_RUNS} lan — do TC7")
         print(f"{'='*60}")
         for i in range(1, NUM_RUNS + 1):
-            print(f"\n  [PhoBERT] Lan {i}/{NUM_RUNS}")
+            run_seed = SEED + i  # 43, 44, 45 → variance giua cac run
+            print(f"\n  [PhoBERT] Lan {i}/{NUM_RUNS} (training_seed={run_seed})")
             train_one_run(
                 tokenized=tokenized,
                 tokenizer=tokenizer,
@@ -208,6 +212,7 @@ def main(mode="all"):
                 batch_size=HPARAMS["batch_size"],
                 epochs=HPARAMS["epochs"],
                 run_name=f"PhoBERT_run{i}",
+                training_seed=run_seed,
             )
 
     if mode in ("all", "tc2"):
