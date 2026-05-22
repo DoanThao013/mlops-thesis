@@ -1,0 +1,222 @@
+
+ PHẦN 1: Chạy lặp 9 runs (3 model × 3 lần) — đo reproducibility
+
+  [SimpleNN] Lần 1/3
+    Epoch 1/10: loss=0.2554
+    Epoch 2/10: loss=0.1095
+    Epoch 3/10: loss=0.0793
+    Epoch 4/10: loss=0.0591
+    Epoch 5/10: loss=0.0455
+    Epoch 6/10: loss=0.0370
+    Epoch 7/10: loss=0.0307
+    Epoch 8/10: loss=0.0272
+    Epoch 9/10: loss=0.0218
+    Epoch 10/10: loss=0.0181
+2026/05/19 00:20:18 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 00:20:31 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 00:20:31 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.9735 | Time=116.1s
+🏃 View run SimpleNN_run1 at: http://localhost:5000/#/experiments/1/runs/9881c0049bbc4077898cca585a7bdbea
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+  [SimpleNN] Lần 2/3
+    Epoch 1/10: loss=0.2600
+    Epoch 2/10: loss=0.1150
+    Epoch 3/10: loss=0.0788
+    Epoch 4/10: loss=0.0615
+    Epoch 5/10: loss=0.0476
+    Epoch 6/10: loss=0.0405
+    Epoch 7/10: loss=0.0318
+    Epoch 8/10: loss=0.0268
+    Epoch 9/10: loss=0.0223
+    Epoch 10/10: loss=0.0187
+2026/05/19 00:24:38 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 00:24:49 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 00:24:49 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.9760 | Time=247.1s
+🏃 View run SimpleNN_run2 at: http://localhost:5000/#/experiments/1/runs/41d4cc761784496ea3877b73ea30fa3d
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+  [SimpleNN] Lần 3/3
+    Epoch 1/10: loss=0.2623
+    Epoch 2/10: loss=0.1161
+    Epoch 3/10: loss=0.0788
+    Epoch 4/10: loss=0.0594
+    Epoch 5/10: loss=0.0469
+    Epoch 6/10: loss=0.0389
+    Epoch 7/10: loss=0.0308
+    Epoch 8/10: loss=0.0266
+    Epoch 9/10: loss=0.0218
+    Epoch 10/10: loss=0.0207
+2026/05/19 00:28:54 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 00:29:02 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 00:29:02 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.9769 | Time=243.5s
+🏃 View run SimpleNN_run3 at: http://localhost:5000/#/experiments/1/runs/655fe4589fab4d17b8ba83431b9cdb8a
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+  [DeepNN] Lần 1/3
+    Epoch 1/10: loss=0.2784
+    Epoch 2/10: loss=0.1396
+    Epoch 3/10: loss=0.1081
+    Epoch 4/10: loss=0.0958
+    Epoch 5/10: loss=0.0812
+    Epoch 6/10: loss=0.0761
+    Epoch 7/10: loss=0.0685
+    Epoch 8/10: loss=0.0613
+    Epoch 9/10: loss=0.0611
+    Epoch 10/10: loss=0.0583
+2026/05/19 00:34:45 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 00:34:55 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 00:34:55 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.9823 | Time=341.7s
+🏃 View run DeepNN_run1 at: http://localhost:5000/#/experiments/1/runs/e1acacfec55a40a5a9cd8a7173caac21
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+  [DeepNN] Lần 2/3
+    Epoch 1/10: loss=0.2773
+    Epoch 2/10: loss=0.1369
+    Epoch 3/10: loss=0.1115
+    Epoch 4/10: loss=0.0928
+    Epoch 5/10: loss=0.0831
+    Epoch 6/10: loss=0.0742
+    Epoch 7/10: loss=0.0696
+    Epoch 8/10: loss=0.0628
+    Epoch 9/10: loss=0.0611
+    Epoch 10/10: loss=0.0559
+2026/05/19 00:40:30 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 00:40:39 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 00:40:39 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.9825 | Time=335.1s
+🏃 View run DeepNN_run2 at: http://localhost:5000/#/experiments/1/runs/9153ef4c6a7949fba4b34c59122d118b
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+  [DeepNN] Lần 3/3
+    Epoch 1/10: loss=0.2799
+    Epoch 2/10: loss=0.1361
+    Epoch 3/10: loss=0.1102
+    Epoch 4/10: loss=0.0943
+    Epoch 5/10: loss=0.0822
+    Epoch 6/10: loss=0.0732
+    Epoch 7/10: loss=0.0685
+    Epoch 8/10: loss=0.0647
+    Epoch 9/10: loss=0.0571
+    Epoch 10/10: loss=0.0556
+2026/05/19 00:46:31 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 00:46:41 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 00:46:41 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.9820 | Time=351.0s
+🏃 View run DeepNN_run3 at: http://localhost:5000/#/experiments/1/runs/673295e1082a4c3ea0a91be6b3b29b8f
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+  [CNN] Lần 1/3
+    Epoch 1/10: loss=0.1540
+    Epoch 2/10: loss=0.0640
+    Epoch 3/10: loss=0.0514
+    Epoch 4/10: loss=0.0426
+    Epoch 5/10: loss=0.0375
+    Epoch 6/10: loss=0.0316
+    Epoch 7/10: loss=0.0273
+    Epoch 8/10: loss=0.0241
+    Epoch 9/10: loss=0.0217
+    Epoch 10/10: loss=0.0173
+2026/05/19 01:10:37 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 01:10:47 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 01:10:47 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.9908 | Time=1435.2s
+🏃 View run CNN_run1 at: http://localhost:5000/#/experiments/1/runs/3a1e17afe99d4b82ab78724d463ea6a9
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+  [CNN] Lần 2/3
+    Epoch 1/10: loss=0.1583
+    Epoch 2/10: loss=0.0685
+    Epoch 3/10: loss=0.0523
+    Epoch 4/10: loss=0.0424
+    Epoch 5/10: loss=0.0371
+    Epoch 6/10: loss=0.0318
+    Epoch 7/10: loss=0.0291
+    Epoch 8/10: loss=0.0236
+    Epoch 9/10: loss=0.0221
+    Epoch 10/10: loss=0.0201
+2026/05/19 01:32:03 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 01:32:16 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 01:32:16 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.9905 | Time=1274.7s
+🏃 View run CNN_run2 at: http://localhost:5000/#/experiments/1/runs/da533211d63c435b807590db6b2ad5c0
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+  [CNN] Lần 3/3
+    Epoch 1/10: loss=0.1540
+    Epoch 2/10: loss=0.0666
+    Epoch 3/10: loss=0.0542
+    Epoch 4/10: loss=0.0429
+    Epoch 5/10: loss=0.0378
+    Epoch 6/10: loss=0.0321
+    Epoch 7/10: loss=0.0289
+    Epoch 8/10: loss=0.0242
+    Epoch 9/10: loss=0.0220
+    Epoch 10/10: loss=0.0190
+2026/05/19 01:53:45 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 01:53:57 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 01:53:57 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.9924 | Time=1286.7s
+🏃 View run CNN_run3 at: http://localhost:5000/#/experiments/1/runs/6d30c75cba8f4a57b58ae84f6c458062
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+ PHẦN 2: TC2 Config Sweep
+
+  Config: TC2_lr0.001_batch32
+    Epoch 1/10: loss=0.2293
+    Epoch 2/10: loss=0.1040
+    Epoch 3/10: loss=0.0710
+    Epoch 4/10: loss=0.0563
+    Epoch 5/10: loss=0.0443
+    Epoch 6/10: loss=0.0386
+    Epoch 7/10: loss=0.0335
+    Epoch 8/10: loss=0.0278
+    Epoch 9/10: loss=0.0245
+    Epoch 10/10: loss=0.0197
+2026/05/19 01:58:24 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 01:58:32 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 01:58:32 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.9715 | Time=263.9s
+🏃 View run TC2_lr0.001_batch32 at: http://localhost:5000/#/experiments/1/runs/5565633121a943fbaae95bfbfd1dbc9c
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+  Config: TC2_lr0.01_batch64
+    Epoch 1/10: loss=0.2815
+    Epoch 2/10: loss=0.2092
+    Epoch 3/10: loss=0.1907
+    Epoch 4/10: loss=0.1841
+    Epoch 5/10: loss=0.1790
+    Epoch 6/10: loss=0.1753
+    Epoch 7/10: loss=0.1588
+    Epoch 8/10: loss=0.1604
+    Epoch 9/10: loss=0.1526
+    Epoch 10/10: loss=0.1565
+2026/05/19 02:02:48 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 02:02:57 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 02:02:57 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.9561 | Time=255.4s
+🏃 View run TC2_lr0.01_batch64 at: http://localhost:5000/#/experiments/1/runs/1511bd58f9bc46b29519e3ee9889f880
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+  Config: TC2_lr0.05_batch128
+    Epoch 1/10: loss=0.6722
+    Epoch 2/10: loss=0.4977
+    Epoch 3/10: loss=0.5421
+    Epoch 4/10: loss=0.5766
+    Epoch 5/10: loss=0.6854
+    Epoch 6/10: loss=0.8045
+    Epoch 7/10: loss=0.7496
+    Epoch 8/10: loss=0.7884
+    Epoch 9/10: loss=0.8083
+    Epoch 10/10: loss=0.8052
+2026/05/19 02:06:49 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+2026/05/19 02:06:58 WARNING mlflow.utils.requirements_utils: Found torch version (2.11.0+cpu) contains a local version label (+cpu). MLflow logged a pip requirement for this package as 'torch==2.11.0' without the local version label to make it installable from PyPI. To specify pip requirements containing local version labels, please use `conda_env` or `pip_requirements`.
+[31m2026/05/19 02:06:58 WARNING mlflow.models.model: Model logged without a signature and input example. Please set `input_example` parameter when logging the model to auto infer the model signature.[0m
+     Accuracy=0.7832 | Time=231.8s
+🏃 View run TC2_lr0.05_batch128 at: http://localhost:5000/#/experiments/1/runs/57ed4de5067b451cb6b3633ac9359524
+🧪 View experiment at: http://localhost:5000/#/experiments/1
+
+ Hoàn thành! Xem kết quả tại: http://localhost:5000
