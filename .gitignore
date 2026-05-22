@@ -11,3 +11,7 @@ mlruns/
 .cache/
 .DS_Store
 .DS_Store
+
+  # Metaflow DAG visualizations (generated, not versioned)
+metaflow/**/*.dot
+metaflow/**/*.png
