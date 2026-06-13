@@ -93,10 +93,16 @@ try:
     flow = Flow("PhoBERTSentimentFlow")
     for run in flow.runs():
         try:
+            # training_seed: baseline=43/44/45, sweep=42 (default)
+            try:
+                tseed = run.data.training_seed
+            except Exception:
+                tseed = 42
             results.append({{
                 "run_id":          run.id,
                 "lr":              run.data.lr,
                 "batch_size":      run.data.batch_size,
+                "training_seed":   tseed,
                 "accuracy":        round(run.data.accuracy, 4),
                 "f1_macro":        round(run.data.f1_macro, 4),
                 "train_time_s":    round(run.data.train_time, 1),
@@ -270,13 +276,18 @@ def plot_uc1_tc2(df):
 # UC2 — Biểu đồ 4: Baseline accuracy + F1
 # ─────────────────────────────────────────────
 def plot_uc2_baseline(df):
-    # Baseline: 3 runs lr=2e-5, batch=2
-    baseline = df[(df["lr"] == 2e-5) & (df["batch_size"] == 2)].copy()
+    # Baseline: training_seed IN (43,44,45) — runs sau khi fix seed ngày 22/05
+    # Fallback: lấy lr=2e-5, batch=2 sort tăng dần, 3 runs mới nhất
+    if "training_seed" in df.columns:
+        baseline = df[df["training_seed"].isin([43, 44, 45])].copy()
+    else:
+        baseline = df[(df["lr"] == 2e-5) & (df["batch_size"] == 2)].copy()
+
     if baseline.empty:
-        # fallback: lấy tất cả
         baseline = df.copy()
 
-    baseline = baseline.sort_values("run_id").reset_index(drop=True)
+    # Sort tăng dần theo run_id → Run 1 = run đầu tiên chạy
+    baseline = baseline.sort_values("run_id", ascending=True).reset_index(drop=True)
     n    = min(len(baseline), 3)
     runs = [f"Run {i+1}" for i in range(n)]
     accs = baseline["accuracy"].values[:n]
@@ -323,14 +334,28 @@ def plot_uc2_baseline(df):
 # UC2 — Biểu đồ 5: TC2 Config Sweep
 # ─────────────────────────────────────────────
 def plot_uc2_tc2(df):
-    # Sweep: loại bỏ baseline (lr=2e-5, batch=2)
-    sweep = df[~((df["lr"] == 2e-5) & (df["batch_size"] == 2))].copy()
+    # TC2 sweep: training_seed=42 (default seed, không phải 43/44/45 của baseline)
+    # Gồm 3 configs: lr=1e-5/batch=2, lr=2e-5/batch=2, lr=3e-5/batch=4
+    if "training_seed" in df.columns:
+        sweep = df[df["training_seed"] == 42].copy()
+    else:
+        # Fallback: lấy runs không phải baseline (lr≠2e-5 hoặc batch≠2)
+        sweep = df[~((df["lr"] == 2e-5) & (df["batch_size"] == 2))].copy()
+
     if sweep.empty:
         print("  [UC2 TC2] Chưa có sweep runs, bỏ qua biểu đồ.")
         return
 
-    baseline_mean_acc = df[(df["lr"] == 2e-5) & (df["batch_size"] == 2)]["accuracy"].mean()
-    baseline_mean_f1  = df[(df["lr"] == 2e-5) & (df["batch_size"] == 2)]["f1_macro"].mean()
+    # Sort theo lr tăng dần để hiển thị đúng thứ tự TC2
+    sweep = sweep.sort_values("lr", ascending=True).reset_index(drop=True)
+
+    # Baseline mean từ runs đã fix seed
+    if "training_seed" in df.columns:
+        bdf = df[df["training_seed"].isin([43, 44, 45])]
+    else:
+        bdf = df[(df["lr"] == 2e-5) & (df["batch_size"] == 2)]
+    baseline_mean_acc = bdf["accuracy"].mean() if not bdf.empty else None
+    baseline_mean_f1  = bdf["f1_macro"].mean()  if not bdf.empty else None
 
     labels = [f"lr={r['lr']:.0e}\nbatch={int(r['batch_size'])}" for _, r in sweep.iterrows()]
     accs   = sweep["accuracy"].values
