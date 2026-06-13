@@ -334,19 +334,23 @@ def plot_uc2_baseline(df):
 # UC2 — Biểu đồ 5: TC2 Config Sweep
 # ─────────────────────────────────────────────
 def plot_uc2_tc2(df):
-    # TC2 sweep: training_seed=42 (default seed, không phải 43/44/45 của baseline)
-    # Gồm 3 configs: lr=1e-5/batch=2, lr=2e-5/batch=2, lr=3e-5/batch=4
+    # TC2 sweep: training_seed=42 VÀ run_id >= run nhỏ nhất của baseline (22/05)
+    # Baseline runs có seed 43/44/45, run_id: 1779478832181869 ~ 1779487516074039
+    # TC2 sweep chạy ngay sau baseline trong cùng session run_uc2_all.sh
     if "training_seed" in df.columns:
-        sweep = df[df["training_seed"] == 42].copy()
+        baseline_min_id = df[df["training_seed"].isin([43, 44, 45])]["run_id"].min()
+        sweep = df[
+            (df["training_seed"] == 42) &
+            (df["run_id"] >= baseline_min_id)
+        ].copy()
     else:
-        # Fallback: lấy runs không phải baseline (lr≠2e-5 hoặc batch≠2)
         sweep = df[~((df["lr"] == 2e-5) & (df["batch_size"] == 2))].copy()
 
     if sweep.empty:
         print("  [UC2 TC2] Chưa có sweep runs, bỏ qua biểu đồ.")
         return
 
-    # Sort theo lr tăng dần để hiển thị đúng thứ tự TC2
+    # Sort theo lr tăng dần: 1e-5 → 2e-5 → 3e-5
     sweep = sweep.sort_values("lr", ascending=True).reset_index(drop=True)
 
     # Baseline mean từ runs đã fix seed
