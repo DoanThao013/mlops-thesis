@@ -334,14 +334,15 @@ def plot_uc2_baseline(df):
 # UC2 — Biểu đồ 5: TC2 Config Sweep
 # ─────────────────────────────────────────────
 def plot_uc2_tc2(df):
-    # TC2 sweep: training_seed=42 VÀ run_id >= run nhỏ nhất của baseline (22/05)
-    # Baseline runs có seed 43/44/45, run_id: 1779478832181869 ~ 1779487516074039
-    # TC2 sweep chạy ngay sau baseline trong cùng session run_uc2_all.sh
+    # TC2 sweep: training_seed=42, run_id < baseline (chạy ngày 20/05, trước khi fix seed)
+    # Gồm 3 configs: lr=1e-5/batch=2, lr=2e-5/batch=2, lr=3e-5/batch=4
+    # Run_id của baseline (22/05): 1779478832181869 ~ 1779487516074039
+    # Run_id của TC2 sweep (20/05): 1779284582488401, 1779290591866797, 1779296585943542
     if "training_seed" in df.columns:
         baseline_min_id = df[df["training_seed"].isin([43, 44, 45])]["run_id"].min()
         sweep = df[
             (df["training_seed"] == 42) &
-            (df["run_id"] >= baseline_min_id)
+            (df["run_id"] < baseline_min_id)
         ].copy()
     else:
         sweep = df[~((df["lr"] == 2e-5) & (df["batch_size"] == 2))].copy()
