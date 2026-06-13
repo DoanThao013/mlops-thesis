@@ -334,18 +334,20 @@ def plot_uc2_baseline(df):
 # UC2 — Biểu đồ 5: TC2 Config Sweep
 # ─────────────────────────────────────────────
 def plot_uc2_tc2(df):
-    # TC2 sweep: training_seed=42, run_id < baseline (chạy ngày 20/05, trước khi fix seed)
-    # Gồm 3 configs: lr=1e-5/batch=2, lr=2e-5/batch=2, lr=3e-5/batch=4
-    # Run_id của baseline (22/05): 1779478832181869 ~ 1779487516074039
-    # Run_id của TC2 sweep (20/05): 1779284582488401, 1779290591866797, 1779296585943542
+    # TC2 sweep: seed=N/A (chưa có training_seed parameter) VÀ lr khác nhau
+    # 3 runs: lr=1e-5/batch=2, lr=2e-5/batch=2, lr=3e-5/batch=4
+    # Phân biệt với baseline cũ (seed=N/A nhưng lr=2e-5, batch=2 x3 runs đầu tiên)
+    # → Lọc: seed=N/A VÀ (lr != 2e-5 HOẶC batch != 2), cộng thêm lr=2e-5/batch=2 sweep duy nhất
+    # Cách đơn giản nhất: lấy seed=N/A, sort theo run_id tăng dần, bỏ 3 runs đầu (baseline cũ)
     if "training_seed" in df.columns:
-        baseline_min_id = df[df["training_seed"].isin([43, 44, 45])]["run_id"].min()
-        sweep = df[
-            (df["training_seed"] == 42) &
-            (df["run_id"] < baseline_min_id)
-        ].copy()
+        no_seed = df[~df["training_seed"].isin([43, 44, 45])].copy()
     else:
-        sweep = df[~((df["lr"] == 2e-5) & (df["batch_size"] == 2))].copy()
+        no_seed = df.copy()
+
+    # Sort theo run_id tăng dần
+    no_seed = no_seed.sort_values("run_id", ascending=True).reset_index(drop=True)
+    # 3 runs đầu (run_id nhỏ nhất) là baseline cũ, 3 runs tiếp theo là TC2 sweep
+    sweep = no_seed.iloc[3:6].copy()
 
     if sweep.empty:
         print("  [UC2 TC2] Chưa có sweep runs, bỏ qua biểu đồ.")
