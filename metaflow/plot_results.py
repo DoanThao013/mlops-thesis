@@ -79,32 +79,47 @@ def load_uc1_runs():
 
 
 def load_uc2_runs():
-    """Đọc tất cả runs PhoBERTSentimentFlow, trả về DataFrame."""
-    from metaflow import Flow
-    original_cwd = os.getcwd()
-    results = []
+    """Đọc tất cả runs PhoBERTSentimentFlow, trả về DataFrame.
+    Chạy trong subprocess để Metaflow resolve đúng .metaflow/ tại UC2_DIR.
+    """
+    script = f"""
+import os, sys, json
+os.chdir(r"{UC2_DIR}")
+os.environ["METAFLOW_DEFAULT_DATASTORE"] = "local"
+os.environ["METAFLOW_DEFAULT_METADATA"]  = "local"
+from metaflow import Flow
+results = []
+try:
+    flow = Flow("PhoBERTSentimentFlow")
+    for run in flow.runs():
+        try:
+            results.append({{
+                "run_id":          run.id,
+                "lr":              run.data.lr,
+                "batch_size":      run.data.batch_size,
+                "accuracy":        round(run.data.accuracy, 4),
+                "f1_macro":        round(run.data.f1_macro, 4),
+                "train_time_s":    round(run.data.train_time, 1),
+                "eval_time_s":     round(run.data.eval_time, 1),
+                "pipeline_time_s": round(run.data.pipeline_time, 1),
+            }})
+        except Exception:
+            pass
+except Exception as e:
+    pass
+print(json.dumps(results))
+"""
     try:
-        os.chdir(UC2_DIR)
-        flow = Flow("PhoBERTSentimentFlow")
-        for run in flow.runs():
-            try:
-                results.append({
-                    "run_id":          run.id,
-                    "lr":              run.data.lr,
-                    "batch_size":      run.data.batch_size,
-                    "accuracy":        round(run.data.accuracy, 4),
-                    "f1_macro":        round(run.data.f1_macro, 4),
-                    "train_time_s":    round(run.data.train_time, 1),
-                    "eval_time_s":     round(run.data.eval_time, 1),
-                    "pipeline_time_s": round(run.data.pipeline_time, 1),
-                })
-            except Exception:
-                pass
+        out = subprocess.check_output(
+            [sys.executable, "-c", script],
+            stderr=subprocess.DEVNULL
+        )
+        import json
+        data = json.loads(out.decode())
+        return pd.DataFrame(data)
     except Exception as e:
         print(f"  [UC2] Lỗi đọc flow: {e}")
-    finally:
-        os.chdir(original_cwd)
-    return pd.DataFrame(results)
+        return pd.DataFrame()
 
 
 # ─────────────────────────────────────────────
